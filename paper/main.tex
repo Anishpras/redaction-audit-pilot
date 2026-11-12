@@ -16,7 +16,7 @@
 \title{What Evidence Do AI Agent Audit Logs Need After Redaction?\\[4pt]
 \large A Matched-Pair Pilot on Verifying Consent from Masked and Aliased Logs}
 \author{Anish Prashun\\ \small Independent researcher}
-\date{Independent technical report \quad Version 1.2 \quad November 2026}
+\date{Independent technical report \quad Version 1.2 \quad November 2026\\[2pt] \small DOI: \href{https://doi.org/10.5281/zenodo.24163831}{10.5281/zenodo.24163831}}
 
 \begin{document}
 \maketitle
@@ -481,7 +481,7 @@ The following ideas are untested.
 
 \section*{Availability and reproducibility}
 
-The code, fixtures, manifest, protocol with revision log, freeze history and all outputs are at \url{https://github.com/Anishpras/redaction-audit-pilot}, with a Zenodo archive and DOI listed in the repository README once released. Running \code{python3 run\_pilot.py} reproduces every number in the pilot. Running \code{python3 -m redaction\_audit} reproduces the exploratory results and runs the toolkit on new rules (see \code{docs/tutorial.md}).
+The code, fixtures, manifest, protocol with revision log, freeze history and all outputs are at \url{https://github.com/Anishpras/redaction-audit-pilot}, archived on Zenodo at \url{https://doi.org/10.5281/zenodo.24163831} (all versions; version 1.2.0: \url{https://doi.org/10.5281/zenodo.24163832}). Running \code{python3 run\_pilot.py} reproduces every number in the pilot. Running \code{python3 -m redaction\_audit} reproduces the exploratory results and runs the toolkit on new rules (see \code{docs/tutorial.md}).
 \begin{itemize}
   \item \textbf{Environment:} Python 3.13.7 on macOS (arm64), about 7 seconds, 290 isolated reviewer calls across two passes.
   \item \textbf{Versions and seeds:} fixture version 1.1.0; sanity seed 20261112; call-order seeds 20261113 and 20261114.

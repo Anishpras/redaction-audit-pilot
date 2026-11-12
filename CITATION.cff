@@ -5,7 +5,16 @@ title: "What Evidence Do AI Agent Audit Logs Need After Redaction? A matched-pai
 authors:
   - family-names: Prashun
     given-names: Anish
-version: 1.2.0
+version: 1.2.1
+doi: 10.5281/zenodo.24163831
+date-released: 2026-11-12
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24163831
+    description: Concept DOI (all versions)
+  - type: doi
+    value: 10.5281/zenodo.24163832
+    description: Version 1.2.0
 license:
   - MIT
   - CC-BY-4.0

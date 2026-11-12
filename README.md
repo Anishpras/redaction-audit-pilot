@@ -1,5 +1,7 @@
 # What Evidence Do AI Agent Audit Logs Need After Redaction?
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24163831.svg)](https://doi.org/10.5281/zenodo.24163831)
+
 Action logs, such as those of AI agents, are redacted before people review them, yet the reviewer still has to decide whether each action was authorised. **This repository lets you test whether your redaction keeps that possible, and what it still exposes.** It also contains the matched-pair study that motivated it.
 
 - **Paper:** [`paper/main.pdf`](paper/main.pdf)
@@ -116,7 +118,9 @@ python3 -m unittest discover -s tests_toolkit -t .   # toolkit (29 tests)
 
 ## Citation and licence
 
-See `CITATION.cff`. A Zenodo DOI will be listed here once the repository is archived.
+Archived on Zenodo: **https://doi.org/10.5281/zenodo.24163831** (all versions; this always resolves to the latest). Version 1.2.0 specifically: https://doi.org/10.5281/zenodo.24163832. Citation metadata is in `CITATION.cff`; GitHub's "Cite this repository" button uses it.
+
+> Prashun, A. (2026). *What Evidence Do AI Agent Audit Logs Need After Redaction? A matched-pair pilot and a reusable toolkit for auditable redaction* (Version 1.2) [Software and technical report]. Zenodo. https://doi.org/10.5281/zenodo.24163831
 
 - **Code:** MIT (`LICENSE`).
 - **Paper, protocol, fixtures and results:** CC BY 4.0 (`LICENSE-DATA.md`).

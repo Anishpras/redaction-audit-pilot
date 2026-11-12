@@ -1,7 +1,7 @@
 {
   "title": "What Evidence Do AI Agent Audit Logs Need After Redaction? A matched-pair pilot and a reusable toolkit for auditable redaction (code, fixtures, results and paper)",
   "upload_type": "software",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "creators": [
     {
       "name": "Prashun, Anish"
