@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this code, fixtures or results, please cite them as below."
+type: software
+title: "What Evidence Do AI Agent Audit Logs Need After Redaction? A matched-pair pilot on consent verification"
+authors:
+  - family-names: Prashun
+    given-names: Anish
+version: 1.0.0
+license:
+  - MIT
+  - CC-BY-4.0
+repository-code: "https://github.com/Anishpras/redaction-audit-pilot"
+keywords:
+  - AI agents
+  - audit logs
+  - redaction
+  - pseudonymisation
+  - consent verification
+  - policy checkability
+  - privacy
+abstract: >-
+  A reproducible pilot (Python 3 standard library only, synthetic data) that
+  measures whether a reviewer can verify consent for an AI agent's completed
+  document share after the audit log is redacted. Twenty scripted runs (ten
+  matched authorised/unauthorised pairs) are rendered as full logs, uniformly
+  masked logs and logs with consistent within-run aliases, plus two ablations
+  that omit expiry or revocation evidence. Reported metrics: identical-input
+  pairs, a forced-binary accuracy ceiling, three-valued rule-reviewer outcomes
+  and direct exposure of planted values.

@@ -1,0 +1,37 @@
+{
+  "history": [
+    {
+      "label": "v1.0",
+      "frozen_at_utc": "2026-11-12T10:29:46+00:00",
+      "fixture_version": "1.0.0",
+      "sha256": {
+        "PROTOCOL.md": "4d351691c7da11b42396babed042e9d3e8b7db9be8089ba706d21313a7dadd3f",
+        "data/fixtures.json": "1794f6df1c1ee6b55eaf24c0667344015056dbf6373cc5dd160d4dd2b5598b3e",
+        "data/manifest.json": "b0df2b708a3b82e528bd26375ff1b2a42c03ca38a5a6ab574f5ea85bbfe4dd36"
+      }
+    },
+    {
+      "label": "v1.1",
+      "frozen_at_utc": "2026-11-12T11:42:31+00:00",
+      "fixture_version": "1.1.0",
+      "note": "Post-run hardening after independent code review; rule, views, metrics, reviewer logic and fixture facts unchanged; see PROTOCOL.md Revisions.",
+      "sha256": {
+        "PROTOCOL.md": "161e37d1ad7af56524da021b21e98c02671bdba02fe6e0c623a485a38aac5de6",
+        "data/fixtures.json": "db76610a7715cd285c95cebe712f94b49edf7ffc0c29c9ed6f6c432b225d8933",
+        "data/manifest.json": "d7592fe511386650b757b05d08ad0ce967737b489c22abd3011ac480399db6b0",
+        "run_pilot.py": "6cde6be64dd18e06fa70f205a4880e7aa06edb001215b9f86e8cfbbf7e41857a",
+        "pilot/__init__.py": "7d01bcea8845e3217fb59344271f047c81e6ff15a91cf330534f5030f44f00b1",
+        "pilot/fixtures.py": "70d3cf99d07660c684d95baa103f01e27374675ef7ff01f5fd4069d62c365fce",
+        "pilot/policy.py": "bcd5e40640b8d8846d21c56ae01616c75367801f9860fe3aa0033f04c017fa8a",
+        "pilot/views.py": "9f51693d23291114e09901cb28d0aaf160f0a874ab1d84368ea8787760953e81",
+        "pilot/reviewer.py": "b4b50c916bd35b80869fa1f313492ec6c5c858774ea7ac81a0bad7aebd8b989f",
+        "pilot/exposure.py": "5f9ab07474b58f874ccd162c4e640b27a322800bce910359fb0a7175f0ab04be",
+        "pilot/scoring.py": "f52e4c3b43d19c14d0a6e53aa3dca4edd165a0af49218d0378ef72e6cdca218e",
+        "pilot/validate.py": "c3b366c478bd5e10359d089a057557eaaeb75723de4b9e155f5f78104d737806",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_rules.py": "06ba5aba83a2394028ff0665472e822a8ad9f3760e97239857d491279ef6663b",
+        "tests/test_scoring.py": "956204bec01748759223bfc5a4da90edcd59ef0f978a5611527f5e4d373ea43a"
+      }
+    }
+  ]
+}

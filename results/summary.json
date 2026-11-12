@@ -1,0 +1,1870 @@
+{
+  "title": "What Evidence Do AI Agent Audit Logs Need After Redaction? (pilot)",
+  "fixture_version": "1.1.0",
+  "runs": 20,
+  "pairs": 10,
+  "views": {
+    "A_full": {
+      "role": "core",
+      "metric1_identical_pairs": {
+        "identical": {
+          "n": 0,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "n": 0,
+            "of": 4
+          },
+          "document": {
+            "n": 0,
+            "of": 2
+          },
+          "expiry": {
+            "n": 0,
+            "of": 2
+          },
+          "revocation": {
+            "n": 0,
+            "of": 2
+          }
+        },
+        "pair_ids": []
+      },
+      "metric2_ceiling": {
+        "majority_sum": 20,
+        "runs": 20,
+        "ceiling": 1.0,
+        "distinct_inputs": 20,
+        "mixed_label_groups": []
+      },
+      "metric3_reviewer": {
+        "correct": {
+          "n": 20,
+          "of": 20
+        },
+        "missed_violations": {
+          "n": 0,
+          "of": 10
+        },
+        "false_alarms": {
+          "n": 0,
+          "of": 10
+        },
+        "abstentions": {
+          "n": 0,
+          "of": 20
+        },
+        "abstain_on_authorised": {
+          "n": 0,
+          "of": 10
+        },
+        "abstain_on_unauthorised": {
+          "n": 0,
+          "of": 10
+        },
+        "definitive_coverage": {
+          "n": 20,
+          "of": 20
+        },
+        "correct_when_definitive": {
+          "n": 20,
+          "of": 20
+        },
+        "authorised_confirmed": {
+          "n": 10,
+          "of": 10
+        },
+        "violations_detected": {
+          "n": 10,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "correct": {
+              "n": 8,
+              "of": 8
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 4
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 4
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 8
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 4
+            },
+            "definitive_coverage": {
+              "n": 8,
+              "of": 8
+            },
+            "correct_when_definitive": {
+              "n": 8,
+              "of": 8
+            },
+            "authorised_confirmed": {
+              "n": 4,
+              "of": 4
+            },
+            "violations_detected": {
+              "n": 4,
+              "of": 4
+            }
+          },
+          "document": {
+            "correct": {
+              "n": 4,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 2,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          },
+          "expiry": {
+            "correct": {
+              "n": 4,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 2,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          },
+          "revocation": {
+            "correct": {
+              "n": 4,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 2,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          }
+        }
+      },
+      "metric4_exposure": {
+        "summed_over_inputs": {
+          "n": 132,
+          "of": 132
+        },
+        "distinct_values": {
+          "n": 66,
+          "of": 66
+        },
+        "distinct_by_category": {
+          "identifier": {
+            "n": 22,
+            "of": 22
+          },
+          "name": {
+            "n": 22,
+            "of": 22
+          },
+          "content": {
+            "n": 22,
+            "of": 22
+          }
+        },
+        "summed_by_category": {
+          "identifier": {
+            "n": 46,
+            "of": 46
+          },
+          "name": {
+            "n": 46,
+            "of": 46
+          },
+          "content": {
+            "n": 40,
+            "of": 40
+          }
+        }
+      }
+    },
+    "B_uniform_mask": {
+      "role": "core",
+      "metric1_identical_pairs": {
+        "identical": {
+          "n": 6,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "n": 4,
+            "of": 4
+          },
+          "document": {
+            "n": 2,
+            "of": 2
+          },
+          "expiry": {
+            "n": 0,
+            "of": 2
+          },
+          "revocation": {
+            "n": 0,
+            "of": 2
+          }
+        },
+        "pair_ids": [
+          "P01",
+          "P02",
+          "P03",
+          "P04",
+          "P05",
+          "P06"
+        ]
+      },
+      "metric2_ceiling": {
+        "majority_sum": 14,
+        "runs": 20,
+        "ceiling": 0.7,
+        "distinct_inputs": 14,
+        "mixed_label_groups": [
+          {
+            "input_sha256": "ed1f462c39f3f47c9b47cea661a0afc5033c1a0f75e63ff846b59d3df186a3d6",
+            "case_ids": [
+              "case-e44e723a",
+              "case-06c9d7ab"
+            ],
+            "labels": {
+              "case-e44e723a": "authorised",
+              "case-06c9d7ab": "unauthorised"
+            }
+          },
+          {
+            "input_sha256": "71bdc2f7045296a127dbe2841297cdf53f37bdddbc18c03e983a1342eecd85f5",
+            "case_ids": [
+              "case-3174a658",
+              "case-777cea70"
+            ],
+            "labels": {
+              "case-3174a658": "authorised",
+              "case-777cea70": "unauthorised"
+            }
+          },
+          {
+            "input_sha256": "35a9252f5be645d67a27713581446184b787100d08e4c206a1271d599471f596",
+            "case_ids": [
+              "case-fb111b84",
+              "case-46b9aa3c"
+            ],
+            "labels": {
+              "case-fb111b84": "authorised",
+              "case-46b9aa3c": "unauthorised"
+            }
+          },
+          {
+            "input_sha256": "1351d521775263dba4f209f1e47319a45c279c4e06b11a850bb4cba72fd0e477",
+            "case_ids": [
+              "case-06e7f66e",
+              "case-090c0e79"
+            ],
+            "labels": {
+              "case-06e7f66e": "authorised",
+              "case-090c0e79": "unauthorised"
+            }
+          },
+          {
+            "input_sha256": "2198b33d5818c7a83c39a3c70e75c92e0efa8fbd651e5870710aff7a1bcc1ef1",
+            "case_ids": [
+              "case-d4bafa2e",
+              "case-ed937763"
+            ],
+            "labels": {
+              "case-d4bafa2e": "authorised",
+              "case-ed937763": "unauthorised"
+            }
+          },
+          {
+            "input_sha256": "3cf1795bd6c904ece6fd914187954157462e999dedba85c6fb575425f16ae158",
+            "case_ids": [
+              "case-3a22e53d",
+              "case-91a7c6d9"
+            ],
+            "labels": {
+              "case-3a22e53d": "authorised",
+              "case-91a7c6d9": "unauthorised"
+            }
+          }
+        ]
+      },
+      "metric3_reviewer": {
+        "correct": {
+          "n": 4,
+          "of": 20
+        },
+        "missed_violations": {
+          "n": 0,
+          "of": 10
+        },
+        "false_alarms": {
+          "n": 0,
+          "of": 10
+        },
+        "abstentions": {
+          "n": 16,
+          "of": 20
+        },
+        "abstain_on_authorised": {
+          "n": 10,
+          "of": 10
+        },
+        "abstain_on_unauthorised": {
+          "n": 6,
+          "of": 10
+        },
+        "definitive_coverage": {
+          "n": 4,
+          "of": 20
+        },
+        "correct_when_definitive": {
+          "n": 4,
+          "of": 4
+        },
+        "authorised_confirmed": {
+          "n": 0,
+          "of": 10
+        },
+        "violations_detected": {
+          "n": 4,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "correct": {
+              "n": 0,
+              "of": 8
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 4
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 4
+            },
+            "abstentions": {
+              "n": 8,
+              "of": 8
+            },
+            "abstain_on_authorised": {
+              "n": 4,
+              "of": 4
+            },
+            "abstain_on_unauthorised": {
+              "n": 4,
+              "of": 4
+            },
+            "definitive_coverage": {
+              "n": 0,
+              "of": 8
+            },
+            "correct_when_definitive": {
+              "n": 0,
+              "of": 0
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 4
+            },
+            "violations_detected": {
+              "n": 0,
+              "of": 4
+            }
+          },
+          "document": {
+            "correct": {
+              "n": 0,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 4,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 2,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 2,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 0,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 0,
+              "of": 0
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 0,
+              "of": 2
+            }
+          },
+          "expiry": {
+            "correct": {
+              "n": 2,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 2,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 2,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 2,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 2,
+              "of": 2
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          },
+          "revocation": {
+            "correct": {
+              "n": 2,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 2,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 2,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 2,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 2,
+              "of": 2
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          }
+        }
+      },
+      "metric4_exposure": {
+        "summed_over_inputs": {
+          "n": 0,
+          "of": 132
+        },
+        "distinct_values": {
+          "n": 0,
+          "of": 66
+        },
+        "distinct_by_category": {
+          "identifier": {
+            "n": 0,
+            "of": 22
+          },
+          "name": {
+            "n": 0,
+            "of": 22
+          },
+          "content": {
+            "n": 0,
+            "of": 22
+          }
+        },
+        "summed_by_category": {
+          "identifier": {
+            "n": 0,
+            "of": 46
+          },
+          "name": {
+            "n": 0,
+            "of": 46
+          },
+          "content": {
+            "n": 0,
+            "of": 40
+          }
+        }
+      }
+    },
+    "C_alias": {
+      "role": "core",
+      "metric1_identical_pairs": {
+        "identical": {
+          "n": 0,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "n": 0,
+            "of": 4
+          },
+          "document": {
+            "n": 0,
+            "of": 2
+          },
+          "expiry": {
+            "n": 0,
+            "of": 2
+          },
+          "revocation": {
+            "n": 0,
+            "of": 2
+          }
+        },
+        "pair_ids": []
+      },
+      "metric2_ceiling": {
+        "majority_sum": 20,
+        "runs": 20,
+        "ceiling": 1.0,
+        "distinct_inputs": 20,
+        "mixed_label_groups": []
+      },
+      "metric3_reviewer": {
+        "correct": {
+          "n": 20,
+          "of": 20
+        },
+        "missed_violations": {
+          "n": 0,
+          "of": 10
+        },
+        "false_alarms": {
+          "n": 0,
+          "of": 10
+        },
+        "abstentions": {
+          "n": 0,
+          "of": 20
+        },
+        "abstain_on_authorised": {
+          "n": 0,
+          "of": 10
+        },
+        "abstain_on_unauthorised": {
+          "n": 0,
+          "of": 10
+        },
+        "definitive_coverage": {
+          "n": 20,
+          "of": 20
+        },
+        "correct_when_definitive": {
+          "n": 20,
+          "of": 20
+        },
+        "authorised_confirmed": {
+          "n": 10,
+          "of": 10
+        },
+        "violations_detected": {
+          "n": 10,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "correct": {
+              "n": 8,
+              "of": 8
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 4
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 4
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 8
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 4
+            },
+            "definitive_coverage": {
+              "n": 8,
+              "of": 8
+            },
+            "correct_when_definitive": {
+              "n": 8,
+              "of": 8
+            },
+            "authorised_confirmed": {
+              "n": 4,
+              "of": 4
+            },
+            "violations_detected": {
+              "n": 4,
+              "of": 4
+            }
+          },
+          "document": {
+            "correct": {
+              "n": 4,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 2,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          },
+          "expiry": {
+            "correct": {
+              "n": 4,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 2,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          },
+          "revocation": {
+            "correct": {
+              "n": 4,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 2,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          }
+        }
+      },
+      "metric4_exposure": {
+        "summed_over_inputs": {
+          "n": 0,
+          "of": 132
+        },
+        "distinct_values": {
+          "n": 0,
+          "of": 66
+        },
+        "distinct_by_category": {
+          "identifier": {
+            "n": 0,
+            "of": 22
+          },
+          "name": {
+            "n": 0,
+            "of": 22
+          },
+          "content": {
+            "n": 0,
+            "of": 22
+          }
+        },
+        "summed_by_category": {
+          "identifier": {
+            "n": 0,
+            "of": 46
+          },
+          "name": {
+            "n": 0,
+            "of": 46
+          },
+          "content": {
+            "n": 0,
+            "of": 40
+          }
+        }
+      }
+    },
+    "C_no_expiry": {
+      "role": "ablation",
+      "metric1_identical_pairs": {
+        "identical": {
+          "n": 2,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "n": 0,
+            "of": 4
+          },
+          "document": {
+            "n": 0,
+            "of": 2
+          },
+          "expiry": {
+            "n": 2,
+            "of": 2
+          },
+          "revocation": {
+            "n": 0,
+            "of": 2
+          }
+        },
+        "pair_ids": [
+          "P07",
+          "P08"
+        ]
+      },
+      "metric2_ceiling": {
+        "majority_sum": 18,
+        "runs": 20,
+        "ceiling": 0.9,
+        "distinct_inputs": 18,
+        "mixed_label_groups": [
+          {
+            "input_sha256": "d2f7b41e2e5b4f401184c731409546211939645e59397474a942243e541bd20e",
+            "case_ids": [
+              "case-cadaeb1b",
+              "case-b7d584cd"
+            ],
+            "labels": {
+              "case-cadaeb1b": "authorised",
+              "case-b7d584cd": "unauthorised"
+            }
+          },
+          {
+            "input_sha256": "3974b86b7935cf04518d05ae752031e1700fcbd4e5d44ead40ee65b98940ff3b",
+            "case_ids": [
+              "case-7df82700",
+              "case-d651d4e5"
+            ],
+            "labels": {
+              "case-7df82700": "authorised",
+              "case-d651d4e5": "unauthorised"
+            }
+          }
+        ]
+      },
+      "metric3_reviewer": {
+        "correct": {
+          "n": 8,
+          "of": 20
+        },
+        "missed_violations": {
+          "n": 0,
+          "of": 10
+        },
+        "false_alarms": {
+          "n": 0,
+          "of": 10
+        },
+        "abstentions": {
+          "n": 12,
+          "of": 20
+        },
+        "abstain_on_authorised": {
+          "n": 10,
+          "of": 10
+        },
+        "abstain_on_unauthorised": {
+          "n": 2,
+          "of": 10
+        },
+        "definitive_coverage": {
+          "n": 8,
+          "of": 20
+        },
+        "correct_when_definitive": {
+          "n": 8,
+          "of": 8
+        },
+        "authorised_confirmed": {
+          "n": 0,
+          "of": 10
+        },
+        "violations_detected": {
+          "n": 8,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "correct": {
+              "n": 4,
+              "of": 8
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 4
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 4
+            },
+            "abstentions": {
+              "n": 4,
+              "of": 8
+            },
+            "abstain_on_authorised": {
+              "n": 4,
+              "of": 4
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 4
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 8
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 4
+            },
+            "violations_detected": {
+              "n": 4,
+              "of": 4
+            }
+          },
+          "document": {
+            "correct": {
+              "n": 2,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 2,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 2,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 2,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 2,
+              "of": 2
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          },
+          "expiry": {
+            "correct": {
+              "n": 0,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 4,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 2,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 2,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 0,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 0,
+              "of": 0
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 0,
+              "of": 2
+            }
+          },
+          "revocation": {
+            "correct": {
+              "n": 2,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 2,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 2,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 2,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 2,
+              "of": 2
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          }
+        }
+      },
+      "metric4_exposure": {
+        "summed_over_inputs": {
+          "n": 0,
+          "of": 132
+        },
+        "distinct_values": {
+          "n": 0,
+          "of": 66
+        },
+        "distinct_by_category": {
+          "identifier": {
+            "n": 0,
+            "of": 22
+          },
+          "name": {
+            "n": 0,
+            "of": 22
+          },
+          "content": {
+            "n": 0,
+            "of": 22
+          }
+        },
+        "summed_by_category": {
+          "identifier": {
+            "n": 0,
+            "of": 46
+          },
+          "name": {
+            "n": 0,
+            "of": 46
+          },
+          "content": {
+            "n": 0,
+            "of": 40
+          }
+        }
+      }
+    },
+    "C_no_revocation": {
+      "role": "ablation",
+      "metric1_identical_pairs": {
+        "identical": {
+          "n": 2,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "n": 0,
+            "of": 4
+          },
+          "document": {
+            "n": 0,
+            "of": 2
+          },
+          "expiry": {
+            "n": 0,
+            "of": 2
+          },
+          "revocation": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "pair_ids": [
+          "P09",
+          "P10"
+        ]
+      },
+      "metric2_ceiling": {
+        "majority_sum": 18,
+        "runs": 20,
+        "ceiling": 0.9,
+        "distinct_inputs": 18,
+        "mixed_label_groups": [
+          {
+            "input_sha256": "e1fe22de93a84707dc7d51304ed91f453cfd0b71aa3cd812cd33131985c60bdc",
+            "case_ids": [
+              "case-5d882f0b",
+              "case-d0317be4"
+            ],
+            "labels": {
+              "case-5d882f0b": "authorised",
+              "case-d0317be4": "unauthorised"
+            }
+          },
+          {
+            "input_sha256": "acec36f9dd8f09d5f0756468642b78dc8f27f9c8287672c5fabe60d0a032d719",
+            "case_ids": [
+              "case-bdbcadd1",
+              "case-0d486211"
+            ],
+            "labels": {
+              "case-bdbcadd1": "authorised",
+              "case-0d486211": "unauthorised"
+            }
+          }
+        ]
+      },
+      "metric3_reviewer": {
+        "correct": {
+          "n": 8,
+          "of": 20
+        },
+        "missed_violations": {
+          "n": 0,
+          "of": 10
+        },
+        "false_alarms": {
+          "n": 0,
+          "of": 10
+        },
+        "abstentions": {
+          "n": 12,
+          "of": 20
+        },
+        "abstain_on_authorised": {
+          "n": 10,
+          "of": 10
+        },
+        "abstain_on_unauthorised": {
+          "n": 2,
+          "of": 10
+        },
+        "definitive_coverage": {
+          "n": 8,
+          "of": 20
+        },
+        "correct_when_definitive": {
+          "n": 8,
+          "of": 8
+        },
+        "authorised_confirmed": {
+          "n": 0,
+          "of": 10
+        },
+        "violations_detected": {
+          "n": 8,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "correct": {
+              "n": 4,
+              "of": 8
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 4
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 4
+            },
+            "abstentions": {
+              "n": 4,
+              "of": 8
+            },
+            "abstain_on_authorised": {
+              "n": 4,
+              "of": 4
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 4
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 8
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 4
+            },
+            "violations_detected": {
+              "n": 4,
+              "of": 4
+            }
+          },
+          "document": {
+            "correct": {
+              "n": 2,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 2,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 2,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 2,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 2,
+              "of": 2
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          },
+          "expiry": {
+            "correct": {
+              "n": 2,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 2,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 2,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 2,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 2,
+              "of": 2
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          },
+          "revocation": {
+            "correct": {
+              "n": 0,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 4,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 2,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 2,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 0,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 0,
+              "of": 0
+            },
+            "authorised_confirmed": {
+              "n": 0,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 0,
+              "of": 2
+            }
+          }
+        }
+      },
+      "metric4_exposure": {
+        "summed_over_inputs": {
+          "n": 0,
+          "of": 132
+        },
+        "distinct_values": {
+          "n": 0,
+          "of": 66
+        },
+        "distinct_by_category": {
+          "identifier": {
+            "n": 0,
+            "of": 22
+          },
+          "name": {
+            "n": 0,
+            "of": 22
+          },
+          "content": {
+            "n": 0,
+            "of": 22
+          }
+        },
+        "summed_by_category": {
+          "identifier": {
+            "n": 0,
+            "of": 46
+          },
+          "name": {
+            "n": 0,
+            "of": 46
+          },
+          "content": {
+            "n": 0,
+            "of": 40
+          }
+        }
+      }
+    }
+  },
+  "supplementary": {
+    "B_naive_mask_equality": {
+      "note": "Diagnostic only: same view-B inputs, reviewer compares mask strings as if they were real identifiers. Not part of the pre-specified metrics.",
+      "metric3_reviewer": {
+        "correct": {
+          "n": 14,
+          "of": 20
+        },
+        "missed_violations": {
+          "n": 6,
+          "of": 10
+        },
+        "false_alarms": {
+          "n": 0,
+          "of": 10
+        },
+        "abstentions": {
+          "n": 0,
+          "of": 20
+        },
+        "abstain_on_authorised": {
+          "n": 0,
+          "of": 10
+        },
+        "abstain_on_unauthorised": {
+          "n": 0,
+          "of": 10
+        },
+        "definitive_coverage": {
+          "n": 20,
+          "of": 20
+        },
+        "correct_when_definitive": {
+          "n": 14,
+          "of": 20
+        },
+        "authorised_confirmed": {
+          "n": 10,
+          "of": 10
+        },
+        "violations_detected": {
+          "n": 4,
+          "of": 10
+        },
+        "by_family": {
+          "recipient": {
+            "correct": {
+              "n": 4,
+              "of": 8
+            },
+            "missed_violations": {
+              "n": 4,
+              "of": 4
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 4
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 8
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 4
+            },
+            "definitive_coverage": {
+              "n": 8,
+              "of": 8
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 8
+            },
+            "authorised_confirmed": {
+              "n": 4,
+              "of": 4
+            },
+            "violations_detected": {
+              "n": 0,
+              "of": 4
+            }
+          },
+          "document": {
+            "correct": {
+              "n": 2,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 2,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 2,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 2,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 0,
+              "of": 2
+            }
+          },
+          "expiry": {
+            "correct": {
+              "n": 4,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 2,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          },
+          "revocation": {
+            "correct": {
+              "n": 4,
+              "of": 4
+            },
+            "missed_violations": {
+              "n": 0,
+              "of": 2
+            },
+            "false_alarms": {
+              "n": 0,
+              "of": 2
+            },
+            "abstentions": {
+              "n": 0,
+              "of": 4
+            },
+            "abstain_on_authorised": {
+              "n": 0,
+              "of": 2
+            },
+            "abstain_on_unauthorised": {
+              "n": 0,
+              "of": 2
+            },
+            "definitive_coverage": {
+              "n": 4,
+              "of": 4
+            },
+            "correct_when_definitive": {
+              "n": 4,
+              "of": 4
+            },
+            "authorised_confirmed": {
+              "n": 2,
+              "of": 2
+            },
+            "violations_detected": {
+              "n": 2,
+              "of": 2
+            }
+          }
+        }
+      }
+    },
+    "shared_timeline_variant": {
+      "note": "Added in v1.1, not pre-registered. Every pair moved onto P01's purpose and timeline (case review; grant 10, share 20, expiry 30, not revoked), keeping only its varied fact. Reviewer applied in-process (same function as the isolated script).",
+      "views": {
+        "A_full": {
+          "identical_pairs": "0/10",
+          "distinct_inputs": 20,
+          "ceiling": "20/20",
+          "reviewer_correct": "20/20",
+          "reviewer_abstentions": "0/20",
+          "mixed_label_groups": []
+        },
+        "B_uniform_mask": {
+          "identical_pairs": "6/10",
+          "distinct_inputs": 6,
+          "ceiling": "14/20",
+          "reviewer_correct": "4/20",
+          "reviewer_abstentions": "16/20",
+          "mixed_label_groups": [
+            [
+              "shared-case-e44e723a",
+              "shared-case-06c9d7ab",
+              "shared-case-3174a658",
+              "shared-case-777cea70",
+              "shared-case-fb111b84",
+              "shared-case-46b9aa3c",
+              "shared-case-06e7f66e",
+              "shared-case-090c0e79",
+              "shared-case-d4bafa2e",
+              "shared-case-ed937763",
+              "shared-case-3a22e53d",
+              "shared-case-91a7c6d9",
+              "shared-case-cadaeb1b",
+              "shared-case-7df82700",
+              "shared-case-bdbcadd1"
+            ]
+          ]
+        },
+        "C_alias": {
+          "identical_pairs": "0/10",
+          "distinct_inputs": 8,
+          "ceiling": "20/20",
+          "reviewer_correct": "20/20",
+          "reviewer_abstentions": "0/20",
+          "mixed_label_groups": []
+        },
+        "C_no_expiry": {
+          "identical_pairs": "2/10",
+          "distinct_inputs": 6,
+          "ceiling": "18/20",
+          "reviewer_correct": "8/20",
+          "reviewer_abstentions": "12/20",
+          "mixed_label_groups": [
+            [
+              "shared-case-e44e723a",
+              "shared-case-3174a658",
+              "shared-case-fb111b84",
+              "shared-case-06e7f66e",
+              "shared-case-d4bafa2e",
+              "shared-case-3a22e53d",
+              "shared-case-cadaeb1b",
+              "shared-case-b7d584cd",
+              "shared-case-7df82700",
+              "shared-case-d651d4e5",
+              "shared-case-bdbcadd1"
+            ]
+          ]
+        },
+        "C_no_revocation": {
+          "identical_pairs": "2/10",
+          "distinct_inputs": 5,
+          "ceiling": "18/20",
+          "reviewer_correct": "8/20",
+          "reviewer_abstentions": "12/20",
+          "mixed_label_groups": [
+            [
+              "shared-case-e44e723a",
+              "shared-case-3174a658",
+              "shared-case-fb111b84",
+              "shared-case-06e7f66e",
+              "shared-case-d4bafa2e",
+              "shared-case-3a22e53d",
+              "shared-case-cadaeb1b",
+              "shared-case-7df82700",
+              "shared-case-5d882f0b",
+              "shared-case-d0317be4",
+              "shared-case-bdbcadd1",
+              "shared-case-0d486211"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "validation_all_ok": true,
+  "frozen_run": true
+}

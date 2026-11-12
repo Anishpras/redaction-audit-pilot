@@ -1,0 +1,259 @@
+{
+  "fixture_version": "1.1.0",
+  "sanity_seed": 20261112,
+  "cases": [
+    {
+      "case_id": "case-e44e723a",
+      "pair_id": "P01",
+      "family": "recipient",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "share.recipient (A -> B)",
+      "rationale": "Grant covers D1, recipient A, 'case review', valid [10, 30), not revoked. Share at 20 sends D1 to A for 'case review': every condition holds."
+    },
+    {
+      "case_id": "case-06c9d7ab",
+      "pair_id": "P01",
+      "family": "recipient",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "share.recipient (A -> B)",
+      "rationale": "Same grant. Share at 20 sends D1 to B, who is not the grant recipient (A). Timing, purpose and revocation conditions hold; the recipient condition fails."
+    },
+    {
+      "case_id": "case-3174a658",
+      "pair_id": "P02",
+      "family": "recipient",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "share.recipient (B -> A); consent held by B this time",
+      "rationale": "Grant covers D2, recipient B, 'claim assessment', valid [5, 50), not revoked. Share at 12 sends D2 to B: every condition holds."
+    },
+    {
+      "case_id": "case-777cea70",
+      "pair_id": "P02",
+      "family": "recipient",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "share.recipient (B -> A); consent held by B this time",
+      "rationale": "Same grant. Share at 12 sends D2 to A, who is not the grant recipient (B). Only the recipient condition fails."
+    },
+    {
+      "case_id": "case-fb111b84",
+      "pair_id": "P03",
+      "family": "recipient",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "share.recipient (C -> D); grant later revoked at 180, after the share",
+      "rationale": "Grant covers D3, recipient C, 'account onboarding', valid [100, 200). Revocation takes effect at 180, after the share at 140, so it is not yet effective. Every condition holds."
+    },
+    {
+      "case_id": "case-46b9aa3c",
+      "pair_id": "P03",
+      "family": "recipient",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "share.recipient (C -> D); grant later revoked at 180, after the share",
+      "rationale": "Same grant and later revocation. Share at 140 sends D3 to D, not the grant recipient C. Only the recipient condition fails."
+    },
+    {
+      "case_id": "case-06e7f66e",
+      "pair_id": "P04",
+      "family": "recipient",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "share.recipient (D -> C); share exactly at grant time",
+      "rationale": "Grant covers D4, recipient D, 'complaint follow-up', valid [40, 90), not revoked. Share at exactly 40 is at the grant time, which the rule allows. Every condition holds."
+    },
+    {
+      "case_id": "case-090c0e79",
+      "pair_id": "P04",
+      "family": "recipient",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "share.recipient (D -> C); share exactly at grant time",
+      "rationale": "Same grant. Share at 40 sends D4 to C, not the grant recipient D. Only the recipient condition fails."
+    },
+    {
+      "case_id": "case-d4bafa2e",
+      "pair_id": "P05",
+      "family": "document",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "share.document (D5 -> D6, a sibling file of the same client)",
+      "rationale": "Grant covers D5, recipient E, 'audit preparation', valid [10, 60), not revoked. Share at 30 sends D5 to E: every condition holds."
+    },
+    {
+      "case_id": "case-ed937763",
+      "pair_id": "P05",
+      "family": "document",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "share.document (D5 -> D6, a sibling file of the same client)",
+      "rationale": "Same grant. Share at 30 sends D6 (payroll register) instead of the consented D5. Only the document condition fails."
+    },
+    {
+      "case_id": "case-3a22e53d",
+      "pair_id": "P06",
+      "family": "document",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "share.document (D7 -> D8, an unrelated sensitive file)",
+      "rationale": "Grant covers D7, recipient F, 'billing dispute', valid [200, 400), not revoked. Share at 250 sends D7 to F: every condition holds."
+    },
+    {
+      "case_id": "case-91a7c6d9",
+      "pair_id": "P06",
+      "family": "document",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "share.document (D7 -> D8, an unrelated sensitive file)",
+      "rationale": "Same grant. Share at 250 sends D8 (medical leave note) instead of D7. Only the document condition fails."
+    },
+    {
+      "case_id": "case-cadaeb1b",
+      "pair_id": "P07",
+      "family": "expiry",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "grant.expires_at (31 -> 30); share exactly at expiry",
+      "rationale": "Grant covers D9, recipient G, 'case review', valid [10, 31), not revoked. Share at 30 is strictly before expiry 31. Every condition holds."
+    },
+    {
+      "case_id": "case-b7d584cd",
+      "pair_id": "P07",
+      "family": "expiry",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "grant.expires_at (31 -> 30); share exactly at expiry",
+      "rationale": "Grant expires at 30 and the share happens at exactly 30. Expiry is effective at its recorded time, so the share is outside the window. Only the expiry condition fails."
+    },
+    {
+      "case_id": "case-7df82700",
+      "pair_id": "P08",
+      "family": "expiry",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "grant.expires_at (60 -> 40); share well after expiry",
+      "rationale": "Grant covers D10, recipient H, 'renewal check', valid [0, 60), not revoked. Share at 45 is inside the window. Every condition holds."
+    },
+    {
+      "case_id": "case-d651d4e5",
+      "pair_id": "P08",
+      "family": "expiry",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "grant.expires_at (60 -> 40); share well after expiry",
+      "rationale": "Grant expired at 40; the share happens at 45. Only the expiry condition fails."
+    },
+    {
+      "case_id": "case-5d882f0b",
+      "pair_id": "P09",
+      "family": "revocation",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "grant.revocation.effective_at (21 -> 20); revocation exactly at execution",
+      "rationale": "Grant covers D11, recipient I, 'fraud review', valid [10, 100). Revocation takes effect at 21, after the share at 20, so it is not effective at execution. Every condition holds."
+    },
+    {
+      "case_id": "case-d0317be4",
+      "pair_id": "P09",
+      "family": "revocation",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "grant.revocation.effective_at (21 -> 20); revocation exactly at execution",
+      "rationale": "Revocation takes effect at 20, exactly when the share executes. Revocation is effective at its recorded time, so consent was withdrawn. Only the revocation condition fails."
+    },
+    {
+      "case_id": "case-bdbcadd1",
+      "pair_id": "P10",
+      "family": "revocation",
+      "role": "authorised",
+      "expected_verdict": "authorised",
+      "changed_fact": "grant.revocation (not_revoked -> revoked at 60, before the share)",
+      "rationale": "Grant covers D12, recipient J, 'settlement review', valid [50, 150), and the consent store explicitly records no revocation. Every condition holds."
+    },
+    {
+      "case_id": "case-0d486211",
+      "pair_id": "P10",
+      "family": "revocation",
+      "role": "unauthorised",
+      "expected_verdict": "unauthorised",
+      "changed_fact": "grant.revocation (not_revoked -> revoked at 60, before the share)",
+      "rationale": "Consent was revoked at 60, before the share at 70. Only the revocation condition fails."
+    }
+  ],
+  "sanity_cases": [
+    {
+      "case_id": "S1",
+      "base_case_id": "case-e44e723a",
+      "base_pair_role": "P01-auth",
+      "change_type": "fictional_name",
+      "change": "Recipient display name 'Imogen Thraxley' -> 'Imogen Thraxley-Marsh' in grant and share.",
+      "expected_verdict": "authorised",
+      "expected_identical_views": [
+        "B_uniform_mask",
+        "C_alias",
+        "C_no_expiry",
+        "C_no_revocation"
+      ]
+    },
+    {
+      "case_id": "S2",
+      "base_case_id": "case-06c9d7ab",
+      "base_pair_role": "P01-unauth",
+      "change_type": "fictional_name",
+      "change": "Document title and wrong recipient's name changed.",
+      "expected_verdict": "unauthorised",
+      "expected_identical_views": [
+        "B_uniform_mask",
+        "C_alias",
+        "C_no_expiry",
+        "C_no_revocation"
+      ]
+    },
+    {
+      "case_id": "S3",
+      "base_case_id": "case-b7d584cd",
+      "base_pair_role": "P07-unauth",
+      "change_type": "key_order_formatting",
+      "change": "Same facts, JSON keys stored in a seeded random order in the source file.",
+      "expected_verdict": "unauthorised",
+      "expected_identical_views": [
+        "A_full",
+        "B_uniform_mask",
+        "C_alias",
+        "C_no_expiry",
+        "C_no_revocation"
+      ]
+    },
+    {
+      "case_id": "S4",
+      "base_case_id": "case-d0317be4",
+      "base_pair_role": "P09-unauth",
+      "change_type": "identifier_format",
+      "change": "Raw identifier format changed consistently: 'RCP-ICEFIELD-4410' -> 'rcp_icefield_4410', 'DOC-XENIA-1554' -> 'doc_xenia_1554'.",
+      "expected_verdict": "unauthorised",
+      "expected_identical_views": [
+        "B_uniform_mask",
+        "C_alias",
+        "C_no_expiry",
+        "C_no_revocation"
+      ]
+    },
+    {
+      "case_id": "S5",
+      "base_case_id": "case-ed937763",
+      "base_pair_role": "P05-unauth",
+      "change_type": "fictional_name",
+      "change": "Wrongly shared document's title 'Saltmarsh payroll register' -> 'Saltmarsh payroll register v2'.",
+      "expected_verdict": "unauthorised",
+      "expected_identical_views": [
+        "B_uniform_mask",
+        "C_alias",
+        "C_no_expiry",
+        "C_no_revocation"
+      ]
+    }
+  ]
+}

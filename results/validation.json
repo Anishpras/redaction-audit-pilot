@@ -1,0 +1,457 @@
+[
+  {
+    "check": "data_files_match_fixture_spec",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "freeze_hashes_match_current_files",
+    "ok": true,
+    "detail": "label=v1.1 mismatched=[] not_covered=[]"
+  },
+  {
+    "check": "label_matches_policy:case-e44e723a",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-06c9d7ab",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['recipient_mismatch']"
+  },
+  {
+    "check": "label_matches_policy:case-3174a658",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-777cea70",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['recipient_mismatch']"
+  },
+  {
+    "check": "label_matches_policy:case-fb111b84",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-46b9aa3c",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['recipient_mismatch']"
+  },
+  {
+    "check": "label_matches_policy:case-06e7f66e",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-090c0e79",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['recipient_mismatch']"
+  },
+  {
+    "check": "label_matches_policy:case-d4bafa2e",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-ed937763",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['document_mismatch']"
+  },
+  {
+    "check": "label_matches_policy:case-3a22e53d",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-91a7c6d9",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['document_mismatch']"
+  },
+  {
+    "check": "label_matches_policy:case-cadaeb1b",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-b7d584cd",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['expired']"
+  },
+  {
+    "check": "label_matches_policy:case-7df82700",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-d651d4e5",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['expired']"
+  },
+  {
+    "check": "label_matches_policy:case-5d882f0b",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-d0317be4",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['revoked']"
+  },
+  {
+    "check": "label_matches_policy:case-bdbcadd1",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised failed=[]"
+  },
+  {
+    "check": "label_matches_policy:case-0d486211",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised failed=['revoked']"
+  },
+  {
+    "check": "sanity_label_matches_policy:S1",
+    "ok": true,
+    "detail": "label=authorised oracle=authorised"
+  },
+  {
+    "check": "sanity_label_matches_policy:S2",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised"
+  },
+  {
+    "check": "sanity_label_matches_policy:S3",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised"
+  },
+  {
+    "check": "sanity_label_matches_policy:S4",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised"
+  },
+  {
+    "check": "sanity_label_matches_policy:S5",
+    "ok": true,
+    "detail": "label=unauthorised oracle=unauthorised"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P01",
+    "ok": true,
+    "detail": "family=recipient differing=['events[1].recipient.id', 'events[1].recipient.name']"
+  },
+  {
+    "check": "pair_single_policy_difference:P01",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['recipient_mismatch']"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P02",
+    "ok": true,
+    "detail": "family=recipient differing=['events[1].recipient.id', 'events[1].recipient.name']"
+  },
+  {
+    "check": "pair_single_policy_difference:P02",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['recipient_mismatch']"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P03",
+    "ok": true,
+    "detail": "family=recipient differing=['events[1].recipient.id', 'events[1].recipient.name']"
+  },
+  {
+    "check": "pair_single_policy_difference:P03",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['recipient_mismatch']"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P04",
+    "ok": true,
+    "detail": "family=recipient differing=['events[1].recipient.id', 'events[1].recipient.name']"
+  },
+  {
+    "check": "pair_single_policy_difference:P04",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['recipient_mismatch']"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P05",
+    "ok": true,
+    "detail": "family=document differing=['events[1].document.excerpt', 'events[1].document.id', 'events[1].document.title']"
+  },
+  {
+    "check": "pair_single_policy_difference:P05",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['document_mismatch']"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P06",
+    "ok": true,
+    "detail": "family=document differing=['events[1].document.excerpt', 'events[1].document.id', 'events[1].document.title']"
+  },
+  {
+    "check": "pair_single_policy_difference:P06",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['document_mismatch']"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P07",
+    "ok": true,
+    "detail": "family=expiry differing=['events[0].expires_at']"
+  },
+  {
+    "check": "pair_single_policy_difference:P07",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['expired']"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P08",
+    "ok": true,
+    "detail": "family=expiry differing=['events[0].expires_at']"
+  },
+  {
+    "check": "pair_single_policy_difference:P08",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['expired']"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P09",
+    "ok": true,
+    "detail": "family=revocation differing=['events[0].revocation.effective_at']"
+  },
+  {
+    "check": "pair_single_policy_difference:P09",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['revoked']"
+  },
+  {
+    "check": "pair_changes_only_intended_fact:P10",
+    "ok": true,
+    "detail": "family=revocation differing=['events[0].revocation.effective_at', 'events[0].revocation.status']"
+  },
+  {
+    "check": "pair_single_policy_difference:P10",
+    "ok": true,
+    "detail": "auth_failed=[] unauth_failed=['revoked']"
+  },
+  {
+    "check": "family_counts",
+    "ok": true,
+    "detail": "{'recipient': 4, 'document': 2, 'expiry': 2, 'revocation': 2}"
+  },
+  {
+    "check": "boundary_P07_unauthorised_share_exactly_at_expiry",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "boundary_P09_unauthorised_revocation_exactly_at_share",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "boundary_P04_share_exactly_at_grant_time",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "boundary_P03_revocation_recorded_after_share",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "planted_values_distinct_from_retained_text",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "reviewer_imports_only_json_sys",
+    "ok": true,
+    "detail": "['json', 'sys']"
+  },
+  {
+    "check": "reviewer_attribute_allowlist",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "reviewer_call_allowlist",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "reviewer_no_dunder_access",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "canonical_bytes_repeatable",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "canonical_bytes_ignore_source_key_order",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "scanner_finds_all_planted_values_in_full_view",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "scanner_negative_control_empty",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "unit_tests",
+    "ok": true,
+    "detail": "ran=30 failures=0 errors=0"
+  },
+  {
+    "check": "second_pass_reproduces_inputs_and_verdicts",
+    "ok": true,
+    "detail": "pass orders seeded 20261113 and 20261114"
+  },
+  {
+    "check": "full_view_reviewer_matches_all_labels",
+    "ok": true,
+    "detail": "20/20 match; mismatches=[]"
+  },
+  {
+    "check": "reviewer_inputs_exclude_ids_and_labels",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "sanity_verdict_unchanged_all_views:S1",
+    "ok": true,
+    "detail": "changed in []"
+  },
+  {
+    "check": "sanity_byte_identity_as_expected:S1",
+    "ok": true,
+    "detail": "unexpected in []"
+  },
+  {
+    "check": "sanity_verdict_unchanged_all_views:S2",
+    "ok": true,
+    "detail": "changed in []"
+  },
+  {
+    "check": "sanity_byte_identity_as_expected:S2",
+    "ok": true,
+    "detail": "unexpected in []"
+  },
+  {
+    "check": "sanity_verdict_unchanged_all_views:S3",
+    "ok": true,
+    "detail": "changed in []"
+  },
+  {
+    "check": "sanity_byte_identity_as_expected:S3",
+    "ok": true,
+    "detail": "unexpected in []"
+  },
+  {
+    "check": "sanity_verdict_unchanged_all_views:S4",
+    "ok": true,
+    "detail": "changed in []"
+  },
+  {
+    "check": "sanity_byte_identity_as_expected:S4",
+    "ok": true,
+    "detail": "unexpected in []"
+  },
+  {
+    "check": "sanity_verdict_unchanged_all_views:S5",
+    "ok": true,
+    "detail": "changed in []"
+  },
+  {
+    "check": "sanity_byte_identity_as_expected:S5",
+    "ok": true,
+    "detail": "unexpected in []"
+  },
+  {
+    "check": "invariant_correct_le_ceiling:A_full",
+    "ok": true,
+    "detail": "correct=20 ceiling_sum=20"
+  },
+  {
+    "check": "invariant_outcomes_partition_runs:A_full",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "invariant_ceiling_eq_auth_plus_detected:A_full",
+    "ok": true,
+    "detail": "ceiling_sum=20 auth=10 detected=10"
+  },
+  {
+    "check": "invariant_correct_le_ceiling:B_uniform_mask",
+    "ok": true,
+    "detail": "correct=4 ceiling_sum=14"
+  },
+  {
+    "check": "invariant_outcomes_partition_runs:B_uniform_mask",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "invariant_ceiling_eq_auth_plus_detected:B_uniform_mask",
+    "ok": true,
+    "detail": "ceiling_sum=14 auth=10 detected=4"
+  },
+  {
+    "check": "invariant_correct_le_ceiling:C_alias",
+    "ok": true,
+    "detail": "correct=20 ceiling_sum=20"
+  },
+  {
+    "check": "invariant_outcomes_partition_runs:C_alias",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "invariant_ceiling_eq_auth_plus_detected:C_alias",
+    "ok": true,
+    "detail": "ceiling_sum=20 auth=10 detected=10"
+  },
+  {
+    "check": "invariant_correct_le_ceiling:C_no_expiry",
+    "ok": true,
+    "detail": "correct=8 ceiling_sum=18"
+  },
+  {
+    "check": "invariant_outcomes_partition_runs:C_no_expiry",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "invariant_ceiling_eq_auth_plus_detected:C_no_expiry",
+    "ok": true,
+    "detail": "ceiling_sum=18 auth=10 detected=8"
+  },
+  {
+    "check": "invariant_correct_le_ceiling:C_no_revocation",
+    "ok": true,
+    "detail": "correct=8 ceiling_sum=18"
+  },
+  {
+    "check": "invariant_outcomes_partition_runs:C_no_revocation",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "invariant_ceiling_eq_auth_plus_detected:C_no_revocation",
+    "ok": true,
+    "detail": "ceiling_sum=18 auth=10 detected=8"
+  },
+  {
+    "check": "shared_timeline_variant_labels_match_policy",
+    "ok": true,
+    "detail": "[]"
+  }
+]

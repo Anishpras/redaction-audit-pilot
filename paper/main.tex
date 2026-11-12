@@ -1,0 +1,351 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\setlist{itemsep=2pt,topsep=4pt}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\title{What Evidence Do AI Agent Audit Logs Need After Redaction?\\[4pt]
+\large A Matched-Pair Pilot on Verifying Consent from Masked and Aliased Logs}
+\author{Anish Prashun\\ \small Independent researcher}
+\date{Independent technical report \quad Version 1.1 \quad November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Audit logs for AI agents often have to be redacted before a reviewer sees them, yet the reviewer must still decide whether each recorded action was permitted. We study this tension in a deliberately small, fully reproducible setting. Twenty scripted runs of a fictional CRM agent's completed \code{share\_document} action form ten matched pairs. Each pair contains one authorised and one unauthorised share that differ in a single policy-relevant fact: recipient, document, expiry or revocation. Every run is rendered as a full log, a uniformly masked log and a log with consistent within-run aliases, plus two ablations that drop expiry or revocation evidence. Each exact input is given to an isolated three-valued rule reviewer.
+
+Uniform masking made 6 of 10 pairs byte-identical: every recipient pair and every document pair. The reviewer could confirm none of the 10 authorised shares and detected only the 4 violations that rest on timing. Consistent aliases restored all 20 verdicts while exposing none of the 66 planted raw values. Removing expiry or revocation evidence left 12 of 20 decisions unresolved, including every authorised share.
+
+These outcomes follow largely from the design. The pilot's value is to make the mechanism measurable, to separate \emph{distinguishability} from \emph{verifiability}, and to show which evidence this rule needs from a redacted log: identity equality within the run, expiry, and an explicit revocation state. It does not need raw identifiers, names or contents.
+\end{abstract}
+
+\section{Introduction}
+
+Agent deployments increasingly keep run records so that a later reviewer can decide whether an action was allowed. Those records often contain personal data, so organisations minimise or redact them before review. Redaction answers the privacy question but raises an audit question: after redaction, can the reviewer still tell a permitted action from a violation?
+
+Recent work frames this as \emph{policy checkability}: whether a record contains enough information for compliance to be determined mechanically~\cite{nian2026auditable}. That work also notes that complete audit records can conflict with data minimisation. We make the question concrete for one consent-based authorisation rule and three common log representations, measuring on matched pairs what each representation lets a reviewer determine. The study is a retrospective audit of recorded effects: the mock executor completed every scripted share, including deliberately unauthorised ones. We test what the logs support, not how well a person or a language model uses them.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+  \item A matched-pair design and metric suite that separates three questions: whether inputs can be told apart (identical-input pairs and a forced-binary ceiling), whether consent can be verified (a three-valued reviewer) and what is directly exposed (planted values).
+  \item A reproducible implementation using only the Python standard library. It includes a protocol hash-frozen before the main run, reviewer isolation, 91 automated checks and mutation tests of its safeguards.
+  \item Pilot results. Uniform masking makes every share whose verdict depends on identity unverifiable and leaves only timing violations detectable. Consistent aliases restore every verdict with zero direct exposure. Omitting a single temporal field prevents confirming any authorised share.
+  \item Two properties of the ceiling metric. Merging identical-input groups can never raise it. In matched-pair designs like this one, it equals the number of authorised runs plus the number of unauthorised runs whose own input shows a failing condition, so collisions between pairs leave it unchanged.
+\end{enumerate}
+
+\section{Related work}
+
+\paragraph{Auditability of agents.}
+Nian et al.~\cite{nian2026auditable} separate accountability, auditability and auditing.
+\begin{itemize}
+  \item They define \emph{policy checkability} as whether ``the record contains enough information for compliance to be mechanically determined''. Its outcomes are comply, violate or undecidable ($\bot$).
+  \item Their Proposition~1 shows that omitting a required field can make a policy undecidable.
+  \item Their SPDR metric is the fraction of a policy set that is decidable from a record.
+  \item They treat privacy as a constraint on evidence design, list redaction among ways to reduce evidence cost, and state that they do not develop ``concrete mechanisms for reconciling high-fidelity audit records with data-minimization requirements''.
+  \item Their closest empirical result is a recovery experiment (\S4.3) in which sensitive information is replaced with placeholders. It measures how much responsibility attribution can be recovered, not policy checkability under redaction.
+\end{itemize}
+This pilot is a \emph{focused extension} of that framework: one policy, three concrete redaction formats and matched pairs. Our reviewer's three outcomes mirror theirs, and our definitive-answer coverage is the counterpart of SPDR taken across records for a single policy. Our ablations illustrate Proposition~1 for \emph{confirming} compliance. They also show an asymmetry the proposition does not draw: for a rule with several conditions, a missing field blocks every ``authorised'' verdict but not every ``unauthorised'' one, because any other condition known to fail still establishes a violation.
+
+\paragraph{Audit over incomplete or protected logs.}
+Logic-based auditing has long allowed for logs that lack the information needed to decide a policy. Garg et al.\ treat facts as true, false or unknown and leave a residual policy for what cannot yet be decided~\cite{garg2011incomplete}. Our three-valued reviewer follows that tradition. Chowdhury et al.\ ran an existing privacy-policy violation finder over logs encrypted under schemes that ``largely hide data but reveal enough information'' for the relational queries the audit needs~\cite{chowdhury2015equivalence}. They thereby established that policy audit can survive protection only if the transformation keeps some structure. Our consistent aliases keep exactly that structure (equality) in non-cryptographic form, and our uniform-mask baseline shows empirically what is lost without it. Pseudonyms scoped to a transaction in audit data date back at least to Biskup and Flegel~\cite{biskup2000transaction}. Lakkaraju and Slagell compared single-field anonymisation policies on network traces and identified the fields that matter most for intrusion-detection utility~\cite{lakkaraju2008utility}. Our setting differs because authorisation depends on equality \emph{across} events.
+
+\paragraph{Paired evaluation of monitors.}
+SLEIGHT-Bench~\cite{najt2026sleight,najt2026sleightarxiv} pairs attack transcripts with benign variants that remove the malicious action and are otherwise identical. It uses the benign variants to calibrate monitor thresholds and checks that ``the information necessary to flag the attack is present, even if hidden''. Our identical-pair metric asks whether that information survives redaction.
+
+\paragraph{Redaction that preserves structure.}
+SlotGuard~\cite{xia2026slotguard} rewrites sensitive structural bindings in agent transcripts as typed, suffix-aware slots before the transcripts reach a model provider. It compares this with generic redaction and with a typed-placeholder baseline. On its 200-task probe, generic redaction dropped to 2.5\% task success for each of four models, while SlotGuard scored 89.5--100\%. Our contrast between uniform masks and consistent aliases is the audit-side counterpart. We measure a later reviewer's ability to verify consent, not the agent's task success.
+
+\paragraph{Purpose-bound privacy and contextual integrity.}
+ToolPrivacyBench~\cite{hu2026toolprivacybench} audits whether private data reaches only authorised tools and sinks. It compares recorded tool arguments and backend audit logs with a policy knowledge base, on the principle that each tool should receive only the information necessary for its stated purpose. We ask the same minimisation question about the reviewer. AgentCIScope~\cite{guo2026agentciscope} grounds disclosure constraints in privacy policies, persona agreement and a taxonomy of sensitive attributes. Our rule is deliberately narrower: one explicit grant per case.
+
+\paragraph{Adjacent fields and guidance.}
+\begin{itemize}
+  \item \textbf{Process mining.} Privacy transformations of event logs can produce misleading analysis~\cite{rafiei2021ppdp}, and case variants added by anonymisation are potential false positives for conformance checking~\cite{elkoumy2022dp}.
+  \item \textbf{Network traces.} Deterministic prefix-preserving schemes such as CryptoPAn keep structure, yet fingerprinting attacks can exploit fields left unchanged, such as timestamps~\cite{mohammady2018multiview}. Anonymised traces also allow topology inference and server de-anonymisation~\cite{coull2007devil}.
+  \item \textbf{Guidance.} ENISA treats the choice of pseudonymisation technique as risk-based~\cite{enisa2019pseudo}. The EDPB recommends that the sets of data pseudonymised consistently be ``as small as possible''~\cite{edpb2025pseudo}. ISO/IEC TS 27560 specifies the structure of consent records~\cite{iso27560}.
+\end{itemize}
+
+\paragraph{Novelty.}
+Searches on 12 November 2026 found no prior study that measures, on matched pairs of authorised and unauthorised agent actions differing in a single policy-relevant fact, how uniform masking and within-run equality-preserving aliases change a rule-based reviewer's ability to verify a consent-based authorisation policy (grant, expiry, revocation) from the recorded log, together with direct exposure of planted values. Prior work established the ingredients:
+\begin{itemize}
+  \item that audit over protected logs needs equality-revealing transformations~\cite{chowdhury2015equivalence};
+  \item that constant and consistent anonymisation can be compared for analytic utility~\cite{lakkaraju2008utility};
+  \item that incomplete logs call for three-valued verdicts~\cite{garg2011incomplete,nian2026auditable};
+  \item that consistent substitution beats generic masking for model utility~\cite{xia2026slotguard}.
+\end{itemize}
+We do not claim these as new. The search was not exhaustive.
+
+\section{Setting and consent rule}
+
+Each case contains one consent grant and one completed share. A share is \textbf{authorised} if and only if:
+\begin{enumerate}
+  \item the grant and share match on document identifier, recipient identifier and purpose;
+  \item $t_{\text{grant}} \le t_{\text{share}} < t_{\text{expiry}}$;
+  \item no revocation is effective at execution, i.e.\ there is no revocation with $t_{\text{revoke}} \le t_{\text{share}}$.
+\end{enumerate}
+Times are simulated integers. Expiry and revocation take effect at their recorded time, including when that equals the share time. A known absence of revocation is recorded explicitly as \code{\{"status":"not\_revoked"\}}. An omitted revocation field is \emph{missing evidence}. Grant and share facts are trusted values from the mock application, and tampering is out of scope.
+
+\section{Fixtures}
+
+Table~\ref{tab:fixtures} lists the ten hand-specified pairs. Within each pair, every detail except the varied fact is the same. The pairs include the two boundary cases the design requires, a share exactly at expiry (P07) and a revocation exactly at execution (P09), plus two more: a share exactly at grant time (P04) and a revocation recorded after the share, which is therefore not yet effective (P03). Across the recipient pairs, the consent holder rotates through A, B, C and D. No two pairs share the same combination of purpose and timeline, so no inputs collide across pairs. Individual values do recur: P01 and P07, for example, both use ``case review'' and grant time 10.
+
+Each record holds 6 planted fictional strings, or 8 for unauthorised recipient and document runs:
+\begin{itemize}
+  \item 2--3 raw identifiers;
+  \item 2--3 names or titles;
+  \item 2 content strings: the document excerpt and the share message.
+\end{itemize}
+Expected verdicts and rationales live in a separate manifest and are joined to reviewer outputs only after the reviewer has run. Case identifiers are opaque hashes, and records are stored in identifier order, so neither an identifier nor a record's position reveals its label.
+
+Five sanity cases leave the verdict unchanged while changing a name or title (three cases), the stored key order (one case, seeded) or the identifier format (one case).
+
+\begin{table}[t]
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Matched pairs. Times are integers. NR means explicitly not revoked; ``rev@$t$'' means revoked, effective at $t$.}
+\label{tab:fixtures}
+\begin{tabular}{@{}llllllll@{}}
+\toprule
+Pair & Family & Purpose & Grant & Expiry & Revocation & Share & Authorised vs.\ unauthorised \\
+\midrule
+P01 & recipient & case review & 10 & 30 & NR & 20 & to A vs.\ to B (grant: A) \\
+P02 & recipient & claim assessment & 5 & 50 & NR & 12 & to B vs.\ to A (grant: B) \\
+P03 & recipient & account onboarding & 100 & 200 & rev@180 & 140 & to C vs.\ to D (grant: C) \\
+P04 & recipient & complaint follow-up & 40 & 90 & NR & 40 & to D vs.\ to C (grant: D) \\
+P05 & document & audit preparation & 10 & 60 & NR & 30 & D5 vs.\ sibling file D6 \\
+P06 & document & billing dispute & 200 & 400 & NR & 250 & D7 vs.\ unrelated file D8 \\
+P07 & expiry & case review & 10 & 31 / 30 & NR & 30 & expiry 31 vs.\ 30 (= share) \\
+P08 & expiry & renewal check & 0 & 60 / 40 & NR & 45 & expiry 60 vs.\ 40 \\
+P09 & revocation & fraud review & 10 & 100 & rev@21 / @20 & 20 & rev@21 vs.\ rev@20 (= share) \\
+P10 & revocation & settlement review & 50 & 150 & NR / rev@60 & 70 & NR vs.\ rev@60 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Log views}
+
+All views are generated from the same underlying record. They drop case and run identifiers, preserve event order (grant, then share) and are serialised as canonical JSON (sorted keys, no whitespace, ASCII). The reviewer receives exactly these bytes, and the identical-input comparisons use them too.
+
+\begin{description}[leftmargin=1.2em]
+  \item[A. Full evidence.] All synthetic raw identifiers, names, contents and facts.
+  \item[B. Uniform masking.] Document and recipient identifiers become \code{[MASKED:document\_id]} and \code{[MASKED:recipient\_id]}. Names and contents become \code{[MASKED:name]} and \code{[MASKED:content]}. Action, outcome, purpose and timing are kept.
+  \item[C. Consistent aliases.] Text is masked as in B. Identifiers become \code{DOC\_ALIAS\_$n$} and \code{RCP\_ALIAS\_$n$}, numbered by first appearance in a fixed traversal: events in order, then document before recipient within each event. Each type has its own counter, and the counters reset for every run.
+  \item[C ablations.] \code{C\_no\_expiry} drops the grant's \code{expires\_at}. \code{C\_no\_revocation} drops the whole revocation object, including an explicit ``not revoked''.
+\end{description}
+
+\paragraph{Private fields.} The private fields are document and recipient identifiers, titles, names, excerpts and messages. Purpose and timestamps are kept as non-private policy facts. This choice was made and recorded before the main run.
+
+\section{Reviewer}
+
+The reviewer is a standalone script that imports only \code{json} and \code{sys}. It scores six conditions as \emph{pass}, \emph{fail} or \emph{unknown}: document match, recipient match, purpose match, at or after the grant, before expiry, and not revoked. Three rules decide each condition:
+\begin{itemize}
+  \item a uniform mask is \emph{unknown}, even when the grant's and the share's masks are equal strings;
+  \item aliases and raw identifiers are compared by equality;
+  \item a missing field is unknown.
+\end{itemize}
+Any \emph{fail} yields \textbf{unauthorised}, six \emph{pass}es yield \textbf{authorised}, and anything else yields \textbf{insufficient evidence}.
+
+Each call runs in a fresh temporary directory that holds only a copy of the script, under \code{python3 -I} with an empty environment, with the input on standard input. Calls run in a seeded random order. This is process-level isolation, not an operating-system sandbox. Two checks guard against a reviewer that consults anything beyond its input: a static allowlist on the reviewer's imports, attributes and calls, and the invariant that its correct count cannot exceed the ceiling. A supplementary diagnostic, not pre-specified, runs a \emph{naive} variant that treats equal mask strings as matching identities.
+
+\section{Metrics}
+
+Let $N=20$ be the number of runs.
+\begin{enumerate}
+  \item \textbf{Identical pairs:} matched pairs whose two exact inputs are byte-identical while their labels differ (out of 10, and by family).
+  \item \textbf{Ceiling:} partition the runs into groups $g$ of identical inputs, with $a_g$ authorised and $u_g$ unauthorised runs in each. The ceiling is $\frac{1}{N}\sum_g \max(a_g,u_g)$: the highest accuracy any forced binary decision based only on the input can reach \emph{on this fixed set}.
+  \item \textbf{Reviewer outcomes:} correct (of 20), missed violations (unauthorised judged authorised, of 10), false alarms (of 10), insufficient evidence (of 20, split by label) and definitive-answer coverage.
+  \item \textbf{Direct exposure:} distinct planted values that appear verbatim, or JSON-escaped, in the exact input.
+\end{enumerate}
+
+\paragraph{Three properties of the ceiling.}
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{Merging never raises it,} since $\max(a+a',u+u') \le \max(a,u)+\max(a',u')$.
+  \item \textbf{In this matched-pair design, it equals $(n_{\text{auth}} + d)/N$,} where $d$ counts unauthorised runs whose own input shows a failing condition.
+  \begin{itemize}
+    \item If an unauthorised run shows a failure, every byte-identical run shows it too, so its group is entirely unauthorised.
+    \item Otherwise its input equals its authorised partner's, so its group has at least as many authorised runs as unauthorised ones.
+  \end{itemize}
+  Collisions between pairs therefore leave the ceiling unchanged. Because $d$ is exactly the number of violations the faithful reviewer detects, the run checks this identity in every view.
+  \item \textbf{On a collapsed matched pair,} any forced binary rule gets exactly one of the two runs wrong, either as a missed violation or as a false alarm.
+\end{enumerate}
+
+\section{Validation}
+
+\paragraph{What the 91 automated checks cover.} All passed in the reported run.
+\begin{itemize}
+  \item Every hand label matches a separately implemented trusted-fact oracle.
+  \item Each pair changes only its intended fact, and each unauthorised case fails exactly one condition.
+  \item The boundary cases sit on their intended pairs.
+  \item No reviewer input contains case, pair or run identifiers or label words.
+  \item The exposure scanner finds 66/66 planted values in view A.
+  \item The reviewer passes the static allowlist.
+  \item The full-view reviewer matches all 20 labels. This is a gate: the run stops if it fails.
+  \item A second complete pass, in a different shuffled order, reproduces every input and verdict.
+  \item All five sanity cases behave as specified.
+  \item The metric invariants hold in every view.
+  \item The stored data match the fixture specification, and every frozen file matches \code{FREEZE.json}.
+  \item 30 unit tests pass, including scoring tests with hand-computed answers.
+\end{itemize}
+Two checks are weak and are kept only as smoke tests: same-process re-rendering, and independence from the source key order, which sorted keys make nearly certain.
+
+\paragraph{Mutation tests.} We confirmed that five deliberate faults are each caught:
+\begin{itemize}
+  \item an edited fixture;
+  \item an alias table that persists across runs;
+  \item a reviewer that always passes purpose;
+  \item scoring that counts abstentions as missed violations;
+  \item a reviewer that reaches the filesystem through \code{json.codecs}.
+\end{itemize}
+
+\paragraph{Independent review.} A separate AI agent that had not written the code reviewed version 1.0. It recomputed every metric and reproduced all 100 recorded verdicts with its own code. It confirmed byte-identical results under Python 3.12--3.14 and different hash seeds. It also found gaps in enforcement and wording, which version 1.1 fixes; \code{PROTOCOL.md} lists every change.
+
+\paragraph{Pre-registration.} The v1.0 freeze, made before the main run, hashed the protocol, fixtures and manifest but not the code. File timestamps are consistent with no code changes after it, but the release cannot prove this. The v1.1 freeze covers all code.
+
+\paragraph{Effect of the revision.} No reported number changed between v1.0 and v1.1: the summary tables are byte-identical. Byte-identity of results across separate invocations was verified with \code{diff}, outside the automated checks.
+
+\section{Results}
+
+\begin{table}[t]
+\centering\small
+\caption{Results per view (20 runs, 10 pairs). R/D/E/V: identical pairs by family (of 4/2/2/2). The 66 planted values are 22 identifiers, 22 names or titles and 22 content strings.}
+\label{tab:results}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+View & \shortstack{Identical\\pairs} & R/D/E/V & Ceiling & Correct & \shortstack{Missed\\viol.} & \shortstack{False\\alarms} & \shortstack{Insuff.\\evidence} & \shortstack{Auth.\\confirmed} & \shortstack{Planted\\visible} \\
+\midrule
+A full & 0/10 & 0/0/0/0 & 1.00 & 20/20 & 0/10 & 0/10 & 0/20 & 10/10 & 66/66 \\
+B uniform mask & \textbf{6/10} & 4/2/0/0 & 0.70 & 4/20 & 0/10 & 0/10 & 16/20 & \textbf{0/10} & 0/66 \\
+C aliases & 0/10 & 0/0/0/0 & 1.00 & \textbf{20/20} & 0/10 & 0/10 & 0/20 & 10/10 & \textbf{0/66} \\
+C, no expiry & 2/10 & 0/0/2/0 & 0.90 & 8/20 & 0/10 & 0/10 & 12/20 & 0/10 & 0/66 \\
+C, no revocation & 2/10 & 0/0/0/2 & 0.90 & 8/20 & 0/10 & 0/10 & 12/20 & 0/10 & 0/66 \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Supplementary:} B, naive mask equality} & 14/20 & \textbf{6/10} & 0/10 & 0/20 & 10/10 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:results} reports every view. The faithful reviewer made no missed violations and no false alarms in any view. Every loss is an abstention, and every definitive answer was correct.
+
+\paragraph{By family.}
+\begin{itemize}
+  \item \textbf{View B} abstained on all 12 recipient and document runs. In the expiry and revocation families it detected 2/2 violations each but confirmed 0/2 authorised shares each: a known timing failure establishes a violation, but a masked identity can never be confirmed.
+  \item \textbf{C without expiry} abstained on all four expiry runs, yet still detected every recipient, document and revocation violation (8/8).
+  \item \textbf{C without revocation} mirrors this, abstaining on the revocation family instead.
+\end{itemize}
+
+\paragraph{Hypotheses.} All three pre-registered predictions matched exactly.
+\begin{itemize}
+  \item \textbf{H1:} masking collapses identity-dependent pairs.
+  \item \textbf{H2:} aliases restore those pairs with zero direct exposure.
+  \item \textbf{H3:} omitting temporal evidence leaves decisions unresolved. The prediction, which held, was that all 10 authorised cases would be unresolved, because confirmation requires every condition to be known.
+\end{itemize}
+
+\paragraph{Mixed groups and sanity cases.} The only identical-input groups with mixed labels were the predicted within-pair groups: P01--P06 under B, P07--P08 without expiry, and P09--P10 without revocation. All five sanity cases kept their verdict in every view. Masked and aliased inputs were byte-identical to the base case. The full view was identical only under the key-order change.
+
+\paragraph{Supplementary: shared timeline.} We moved every pair onto P01's purpose and timeline, keeping only its varied fact. This analysis was added after review and was not pre-registered. Distinct inputs fell to 6 (B), 8 (C), 6 (no expiry) and 5 (no revocation), but every ceiling (20, 14, 20, 18, 18 out of 20) and every reviewer count stayed the same, as property~(ii) predicts.
+
+\paragraph{Supplementary: naive reviewer.} A reviewer that reads equal masks as equal identities reaches the B ceiling (14/20) with full coverage. It gets there by clearing all 6 recipient and document violations, none of which shows another failure.
+
+\section{Worked examples}
+
+\paragraph{Identity (P01 and P05, B vs.\ C).} In P01 the grant covers D1 for recipient A, valid from 10 to 30, and the share happens at 20.
+\begin{itemize}
+  \item \textbf{Under B,} both runs read \code{[MASKED:recipient\_id]} $\rightarrow$ \code{[MASKED:recipient\_id]}. The inputs are byte-identical, so a reviewer that sees only its input must treat the two runs alike.
+  \item \textbf{Under C,} the authorised run reads \code{RCP\_ALIAS\_1} $\rightarrow$ \code{RCP\_ALIAS\_1} and the unauthorised run reads \code{RCP\_ALIAS\_1} $\rightarrow$ \code{RCP\_ALIAS\_2}. Both are resolved correctly, with 0/6 and 0/8 planted values visible.
+\end{itemize}
+The document pair P05 behaves the same way: \code{DOC\_ALIAS\_1} $\rightarrow$ \code{DOC\_ALIAS\_1} against \code{DOC\_ALIAS\_1} $\rightarrow$ \code{DOC\_ALIAS\_2}. The reviewer needs to know whether the grant and the share name the same party or document, not which one it is.
+
+\paragraph{Distinguishability versus verifiability (P07 without expiry).} The share occurs at 30, and the grant expires at 31 (authorised) or exactly at 30 (unauthorised). With expiry present, C resolves both runs, including the boundary case, because expiry takes effect at its recorded time. Without expiry, the two inputs are identical.
+
+The ablation's ceiling is 0.90, yet the faithful reviewer resolves only 8/20. The rule ``authorised unless a visible condition fails'' reaches the ceiling (18/20) because each pair varies only one fact, so it exploits the fixture design rather than verifying anything. A reviewer bound by the rule cannot confirm any share without knowing the expiry.
+
+\paragraph{Explicit absence versus missing evidence (P10 without revocation).} The authorised run records \code{not\_revoked}, and the unauthorised run records a revocation at 60, before the share at 70. Once the revocation object is removed, the two runs are indistinguishable. A log that expresses ``no revocation'' only by leaving out a field cannot be told apart from one whose revocation evidence was redacted.
+
+\section{Discussion}
+
+\paragraph{What the reviewer needs.} The pilot shows by removal that verifying this rule needs three things in the log:
+\begin{itemize}
+  \item equality-preserving references for the document and recipient within the run;
+  \item the expiry;
+  \item an explicit revocation state.
+\end{itemize}
+Purpose and grant time are needed by the rule's definition; they were never removed here. Raw identifiers, names and contents are not needed: view C verifies all 20 runs without them. Whether such a log is \emph{safe} to share is a separate question that we did not measure.
+
+\paragraph{How uniform masking fails.} Uniform masking fails because it erases equality, not because it hides values. Its failure is also asymmetric: timing violations remain detectable, but no authorised share can ever be confirmed. The naive diagnostic shows the opposite hazard: a reviewer that reads equal masks as equal identities clears every misdirected share that shows no other failure.
+
+\paragraph{Scope of consistency.} Our within-run aliases make the consistently pseudonymised set one run: the smallest set that still lets a reviewer compare the grant with the share. That is in the spirit of the EDPB's recommendation to keep such sets ``as small as possible''~\cite{edpb2025pseudo}. The same guidance prefers per-transaction pseudonyms. If the grant and the share count as separate transactions, those would give the same party different pseudonyms in the two events. By the reasoning above, that would remove the equality the check needs, and a reviewer comparing them as identifiers would see a mismatch on every share. We did not test this.
+
+\paragraph{Scope of the exposure result.} Zero direct exposure for B and C holds by construction, and the scanner counts only literal planted strings. It is therefore a lower bound: format-preserving substitutes, for example, can leak information about the original value~\cite{boesgaard2026fpe}. The views also keep purposes, exact timestamps, event structure and, in C, the pattern of equalities within a run. Someone holding other records with matching timestamps could join on them and recover identities, as attacks that exploit unchanged trace fields illustrate~\cite{mohammady2018multiview,coull2007devil}. Purposes such as ``fraud review'' can themselves be sensitive. Resetting aliases for every run blocks linking across runs, but it also makes cross-run questions unanswerable, such as whether one recipient received many documents. We did not measure this trade-off.
+
+\section{Limitations}
+
+\begin{itemize}
+  \item \textbf{Size and construction.} There are 20 hand-written runs, each with one grant and one share. All numbers are descriptive counts for these cases. Most follow from the design; byte-identity under uniform masking, for example, is guaranteed whenever a pair differs only in an identifier.
+  \item \textbf{Fixed design choices.} One fact varies per pair, masks name themselves, clocks are integers and facts are trusted.
+  \item \textbf{Untested conditions.} Purpose and grant-start conditions are implemented and unit-tested in every view, but no matched pair varies them.
+  \item \textbf{Reviewer.} The reviewer is rule-based. Its isolation is process-level rather than an operating-system sandbox.
+  \item \textbf{Exposure.} The scanner counts exact substrings only; it does not detect fragments, transformed values or inference.
+  \item \textbf{Shortcuts a model could exploit.} Before any model study, two shortcuts must be removed. In view C, the token \code{\_ALIAS\_2} alone marks every identity violation. In view A, the document-family violations carry a message that does not fit the file sent.
+  \item \textbf{Pre-registration.} The v1.0 freeze did not cover the code (see Validation).
+  \item \textbf{Literature search.} The search was not exhaustive.
+\end{itemize}
+
+\section{Future work}
+
+The following ideas are untested.
+\begin{itemize}
+  \item \textbf{A local-model reviewer.} It would use the same views, a frozen prompt and schema, development and test templates kept separate, and repeated runs analysed as repeated measures. Logs should contain several events, so that alias numbering is not a giveaway. In forensic reconstruction of agent logs, ``identifier renaming alone provided no consistent remedy'' and explicit record bindings helped~\cite{yun2026evidence}, which suggests that model reviewers may use aliases less reliably than our rule does.
+  \item \textbf{More families and log shapes.} Purpose and grant-start families; logs with several grants and shares; delegated or partial grants.
+  \item \textbf{Persistent pseudonyms.} A per-transaction or keyed-persistent pseudonym view that measures cross-run audit utility against linkage risk, together with a re-identification test that joins retained timestamps to auxiliary records.
+  \item \textbf{Richer exposure measures,} based on fragments and inference.
+  \item \textbf{Grounded labels.} Labels based on published consent-record structures~\cite{iso27560} or on contextual-integrity norms~\cite{guo2026agentciscope}.
+\end{itemize}
+
+\section*{Availability and reproducibility}
+
+The code, fixtures, manifest, protocol with revision log, freeze history and all outputs are at \url{https://github.com/Anishpras/redaction-audit-pilot}, archived as [DOI to be added on release]. Running \code{python3 run\_pilot.py} reproduces every number in this paper.
+\begin{itemize}
+  \item \textbf{Environment:} Python 3.13.7 on macOS (arm64), about 7 seconds, 290 isolated reviewer calls across two passes.
+  \item \textbf{Versions and seeds:} fixture version 1.1.0; sanity seed 20261112; call-order seeds 20261113 and 20261114.
+  \item \textbf{Licences:} code under MIT; the paper, protocol, fixtures and results under CC BY 4.0.
+\end{itemize}
+All records are fictional.
+
+\section*{Acknowledgements and AI-assistance statement}
+
+The experiment code, analysis and manuscript were prepared with substantial assistance from Claude (Anthropic), an AI assistant, working under the author's direction. Separate AI agents carried out the independent code review, the citation verification and the literature search described above. The author is responsible for the content. The work used no paid API, cloud compute or external funding.
+
+\begin{thebibliography}{99}\small
+\bibitem{nian2026auditable} Y.~Nian, A.~Yuan, H.~Zhang, J.~Li, L.~Li, X.~Hu, H.~Wei, X.~Xiao, C.~Xiao, and Y.~Zhao. Auditable agents. arXiv:2604.05485v4 [cs.AI], 27 Sep.\ 2026. A condensed version was accepted to ACM AI Summit 2026 (Visionary Papers track). \url{https://arxiv.org/abs/2604.05485}
+\bibitem{garg2011incomplete} D.~Garg, L.~Jia, and A.~Datta. Policy auditing over incomplete logs: Theory, implementation and applications. In \emph{Proc.\ ACM CCS}, 2011. \url{https://doi.org/10.1145/2046707.2046726}
+\bibitem{chowdhury2015equivalence} O.~Chowdhury, D.~Garg, L.~Jia, and A.~Datta. Equivalence-based security for querying encrypted databases: Theory and application to privacy policy audits. In \emph{Proc.\ ACM CCS}, 2015. arXiv:1508.02448. \url{https://arxiv.org/abs/1508.02448}
+\bibitem{biskup2000transaction} J.~Biskup and U.~Flegel. Transaction-based pseudonyms in audit data for privacy respecting intrusion detection. In \emph{Proc.\ RAID 2000}, LNCS 1907, pp.~28--48, Springer, 2000. \url{https://doi.org/10.1007/3-540-39945-3_3}
+\bibitem{lakkaraju2008utility} K.~Lakkaraju and A.~Slagell. Evaluating the utility of anonymized network traces for intrusion detection. arXiv:0712.1224, 2007 (published at SecureComm 2008). \url{https://arxiv.org/abs/0712.1224}
+\bibitem{najt2026sleight} E.~Najt, C.~Toft, T.~Tracy, F.~Roger, and J.~Benton. SLEIGHT-Bench: Finding blind spots in AI monitors. Alignment Science Blog (Anthropic), 19 May 2026. \url{https://alignment.anthropic.com/2026/sleight-bench/}
+\bibitem{najt2026sleightarxiv} E.~Najt, C.~Toft, T.~Tracy, F.~Roger, and J.~Benton. SLEIGHT-Bench: A benchmark of evasion attacks against agent monitors. arXiv:2605.16626v2, May 2026. \url{https://arxiv.org/abs/2605.16626}
+\bibitem{xia2026slotguard} H.~Xia and Y.~Park. SlotGuard: Stop oversharing private local context in LLM agent transcripts. In \emph{Second Workshop on Agents in the Wild (AIWILD) at ICML 2026}. arXiv:2607.17147v2 [cs.CR], 9 Nov.\ 2026. \url{https://arxiv.org/abs/2607.17147}
+\bibitem{hu2026toolprivacybench} S.~Hu, L.~Liu, Z.~Meng, and Z.~Zhao. ToolPrivacyBench: Benchmarking purpose-bound privacy in tool-using LLM agents. arXiv:2606.28061v1, 26 Jun.\ 2026. \url{https://arxiv.org/abs/2606.28061}
+\bibitem{guo2026agentciscope} C.~Guo, Z.~Chen, Z.~Lin, X.~Liu, and B.~Li. AgentCIScope: Grounded contextual integrity evaluation for LLM agents. arXiv:2610.19158v1 [cs.AI], 13 Oct.\ 2026. \url{https://arxiv.org/abs/2610.19158}
+\bibitem{yun2026evidence} T.~Yun, D.~Kim, G.~Kim, J.~Seo, M.~Hur, and M.~Min. Correct answers, unsupported findings: Evidence binding in forensic reconstruction of LLM agent logs. arXiv:2610.09581, Oct.\ 2026. \url{https://arxiv.org/abs/2610.09581}
+\bibitem{rafiei2021ppdp} M.~Rafiei and W.~M.~P.~van der Aalst. Privacy-preserving data publishing in process mining. In \emph{Business Process Management Forum (BPM Forum 2020)}, LNBIP, Springer, pp.~122--138, 2020. \url{https://doi.org/10.1007/978-3-030-58638-6_8}
+\bibitem{elkoumy2022dp} G.~Elkoumy, A.~Pankova, and M.~Dumas. Differentially private release of event logs for process mining. \emph{Information Systems}, 115:102161, 2023. \url{https://doi.org/10.1016/j.is.2022.102161}
+\bibitem{mohammady2018multiview} M.~Mohammady, L.~Wang, Y.~Hong, H.~Louafi, M.~Pourzandi, and M.~Debbabi. Preserving both privacy and utility in network trace anonymization. In \emph{Proc.\ ACM CCS}, pp.~459--474, 2018. \url{https://doi.org/10.1145/3243734.3243809}
+\bibitem{coull2007devil} S.~E.~Coull, C.~V.~Wright, F.~Monrose, M.~P.~Collins, and M.~K.~Reiter. Playing devil's advocate: Inferring sensitive information from anonymized network traces. In \emph{Proc.\ Network and Distributed System Security Symposium (NDSS)}, 2007.
+\bibitem{boesgaard2026fpe} M.~S.~Boesgaard and M.~Larsen. Format-preserving encryption creates a privacy attack surface for re-identification. Cryptology ePrint Archive, Paper 2026/993, 2026. \url{https://eprint.iacr.org/2026/993}
+\bibitem{enisa2019pseudo} ENISA. Pseudonymisation techniques and best practices: Recommendations on shaping technology according to data protection and privacy provisions. European Union Agency for Cybersecurity, Nov.\ 2019. \url{https://doi.org/10.2824/247711}
+\bibitem{edpb2025pseudo} European Data Protection Board. Guidelines 01/2025 on pseudonymisation. Adopted 16 Jan.\ 2025, version for public consultation, paras.~115--121. \url{https://www.edpb.europa.eu/system/files/2025-01/edpb_guidelines_202501_pseudonymisation_en.pdf}
+\bibitem{iso27560} ISO/IEC. ISO/IEC TS 27560:2023 Privacy technologies --- Consent record information structure. Edition 1, Aug.\ 2023. \url{https://www.iso.org/standard/80392.html}
+\end{thebibliography}
+
+\end{document}

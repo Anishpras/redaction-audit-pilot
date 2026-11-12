@@ -1,0 +1,120 @@
+{
+  "A_full": [],
+  "B_uniform_mask": [
+    {
+      "input_sha256": "ed1f462c39f3f47c9b47cea661a0afc5033c1a0f75e63ff846b59d3df186a3d6",
+      "case_ids": [
+        "case-e44e723a",
+        "case-06c9d7ab"
+      ],
+      "labels": {
+        "case-e44e723a": "authorised",
+        "case-06c9d7ab": "unauthorised"
+      }
+    },
+    {
+      "input_sha256": "71bdc2f7045296a127dbe2841297cdf53f37bdddbc18c03e983a1342eecd85f5",
+      "case_ids": [
+        "case-3174a658",
+        "case-777cea70"
+      ],
+      "labels": {
+        "case-3174a658": "authorised",
+        "case-777cea70": "unauthorised"
+      }
+    },
+    {
+      "input_sha256": "35a9252f5be645d67a27713581446184b787100d08e4c206a1271d599471f596",
+      "case_ids": [
+        "case-fb111b84",
+        "case-46b9aa3c"
+      ],
+      "labels": {
+        "case-fb111b84": "authorised",
+        "case-46b9aa3c": "unauthorised"
+      }
+    },
+    {
+      "input_sha256": "1351d521775263dba4f209f1e47319a45c279c4e06b11a850bb4cba72fd0e477",
+      "case_ids": [
+        "case-06e7f66e",
+        "case-090c0e79"
+      ],
+      "labels": {
+        "case-06e7f66e": "authorised",
+        "case-090c0e79": "unauthorised"
+      }
+    },
+    {
+      "input_sha256": "2198b33d5818c7a83c39a3c70e75c92e0efa8fbd651e5870710aff7a1bcc1ef1",
+      "case_ids": [
+        "case-d4bafa2e",
+        "case-ed937763"
+      ],
+      "labels": {
+        "case-d4bafa2e": "authorised",
+        "case-ed937763": "unauthorised"
+      }
+    },
+    {
+      "input_sha256": "3cf1795bd6c904ece6fd914187954157462e999dedba85c6fb575425f16ae158",
+      "case_ids": [
+        "case-3a22e53d",
+        "case-91a7c6d9"
+      ],
+      "labels": {
+        "case-3a22e53d": "authorised",
+        "case-91a7c6d9": "unauthorised"
+      }
+    }
+  ],
+  "C_alias": [],
+  "C_no_expiry": [
+    {
+      "input_sha256": "d2f7b41e2e5b4f401184c731409546211939645e59397474a942243e541bd20e",
+      "case_ids": [
+        "case-cadaeb1b",
+        "case-b7d584cd"
+      ],
+      "labels": {
+        "case-cadaeb1b": "authorised",
+        "case-b7d584cd": "unauthorised"
+      }
+    },
+    {
+      "input_sha256": "3974b86b7935cf04518d05ae752031e1700fcbd4e5d44ead40ee65b98940ff3b",
+      "case_ids": [
+        "case-7df82700",
+        "case-d651d4e5"
+      ],
+      "labels": {
+        "case-7df82700": "authorised",
+        "case-d651d4e5": "unauthorised"
+      }
+    }
+  ],
+  "C_no_revocation": [
+    {
+      "input_sha256": "e1fe22de93a84707dc7d51304ed91f453cfd0b71aa3cd812cd33131985c60bdc",
+      "case_ids": [
+        "case-5d882f0b",
+        "case-d0317be4"
+      ],
+      "labels": {
+        "case-5d882f0b": "authorised",
+        "case-d0317be4": "unauthorised"
+      }
+    },
+    {
+      "input_sha256": "acec36f9dd8f09d5f0756468642b78dc8f27f9c8287672c5fabe60d0a032d719",
+      "case_ids": [
+        "case-bdbcadd1",
+        "case-0d486211"
+      ],
+      "labels": {
+        "case-bdbcadd1": "authorised",
+        "case-0d486211": "unauthorised"
+      }
+    }
+  ]
+}
