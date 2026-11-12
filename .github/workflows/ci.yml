@@ -1,0 +1,30 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {os: ubuntu-latest, python: "3.9"}
+          - {os: ubuntu-latest, python: "3.12"}
+          - {os: ubuntu-latest, python: "3.13"}
+          - {os: macos-latest, python: "3.13"}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Pilot (reproduce every number; 91 checks)
+        run: python run_pilot.py
+      - name: Pilot results unchanged
+        run: git diff --exit-code -- results ':(exclude)results/run_info.json'
+      - name: Toolkit tests (includes byte-for-byte reproduction of the pilot tables)
+        run: python -m unittest discover -s tests_toolkit -t .
+      - name: Starter audit as a CI gate
+        run: |
+          python -m redaction_audit init /tmp/audit
+          python -m redaction_audit run --policy /tmp/audit/policy.json --fields /tmp/audit/fields.json \
+            --cases /tmp/audit/cases.jsonl --views /tmp/audit/views.json --out /tmp/audit/out \
+            --fail-on unsafe,unverifiable --gate alias_per_run --gate hash_per_run --gate times_rank

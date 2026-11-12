@@ -1,0 +1,17 @@
+{
+  "tool": "redaction_audit 1.2.0",
+  "run_at_utc": "2026-11-12T13:10:40+00:00",
+  "python": "3.13.7",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "mode": "generated",
+  "runs": 65,
+  "pairs": 60,
+  "reviewer": "builtin (declared)",
+  "call_order_seed": 20261113,
+  "inputs_sha256": {
+    "policy": "edaf4879e34f110604753e5f741460043e69a8bc45b312b9b6b3e9af9d959420",
+    "fields": "60a10b806717475043acdb671ff26574a500f4f8891c0247440cbd12ab58a3f0",
+    "cases": "0ab7cf2a12e13b9e5254e281593b8f94b0e326118759788bf92a65059a9ea6d1",
+    "views": "14406735e09b14340b92a93d5bec6c4d529d1a712c75b76130b2310f4fd3bbf2"
+  }
+}

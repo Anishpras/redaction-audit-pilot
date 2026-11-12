@@ -1,75 +1,124 @@
-# Redaction audit pilot
+# What Evidence Do AI Agent Audit Logs Need After Redaction?
 
-**What Evidence Do AI Agent Audit Logs Need After Redaction?** This is a small, reproducible pilot. It asks whether a reviewer can still verify consent for an AI agent's completed document share after the audit log has been redacted. It compares three log formats: full logs, uniform masking and consistent within-run aliases.
+Action logs, such as those of AI agents, are redacted before people review them, yet the reviewer still has to decide whether each action was authorised. **This repository lets you test whether your redaction keeps that possible, and what it still exposes.** It also contains the matched-pair study that motivated it.
 
-- **Paper:** [`paper/main.pdf`](paper/main.pdf) (LaTeX source: `paper/main.tex`)
-- **Protocol:** [`PROTOCOL.md`](PROTOCOL.md), with pre-specified (self-attested) hypotheses and a revision log
+- **Paper:** [`paper/main.pdf`](paper/main.pdf)
+- **Use it on your own logs:** [`docs/tutorial.md`](docs/tutorial.md), with every key in [`docs/reference.md`](docs/reference.md)
+- **The idea in one page:** [`docs/evidence-needs.md`](docs/evidence-needs.md)
 
-All data is synthetic and fictional. The code is original and uses only the Python 3 standard library. It makes no network calls, uses no model and needs no paid services.
+Everything uses only the Python standard library (3.9+), with no network or paid services. All data in the repository is synthetic and fictional.
 
-## Key result
-
-| View | Identical pairs | Ceiling | Reviewer correct | Insufficient evidence | Planted values visible |
-|---|---|---|---|---|---|
-| A. Full log | 0/10 | 20/20 | 20/20 | 0/20 | 66/66 |
-| B. Uniform masking | **6/10** | 14/20 | 4/20 | 16/20 | 0/66 |
-| C. Consistent aliases | 0/10 | 20/20 | **20/20** | 0/20 | **0/66** |
-| C without expiry | 2/10 | 18/20 | 8/20 | 12/20 | 0/66 |
-| C without revocation | 2/10 | 18/20 | 8/20 | 12/20 | 0/66 |
-
-Uniform masking collapses every pair whose verdict depends on *who* received *which* document. Under it, the reviewer can confirm none of the 10 authorised shares. Consistent aliases keep the one thing the check needs, whether the grant and the share refer to the same party, and reveal none of the raw values. Dropping expiry or revocation evidence leaves every authorised share unconfirmable.
-
-## Reproduce
+## Use it on your own logs
 
 ```bash
-python3 run_pilot.py
+git clone https://github.com/Anishpras/redaction-audit-pilot && cd redaction-audit-pilot
+python3 -m redaction_audit init my-audit        # a working starter audit to copy and edit
+python3 -m redaction_audit run --policy my-audit/policy.json --fields my-audit/fields.json \
+  --cases my-audit/cases.jsonl --views my-audit/views.json --out my-audit/out
 ```
 
-The command takes about 7 seconds on Python 3.13.7, and the exit code is 0 only if all 91 checks pass. It:
+You describe four things as files:
 
-1. checks that `data/` matches `pilot/fixtures.py`, and that every frozen file (protocol, data and all code) matches the latest entry in `FREEZE.json`;
-2. runs the pre-run checks: labels against a separately implemented policy oracle, pair construction, boundary cases, planted values, a static allowlist on the reviewer, canonical serialisation, the exposure scanner and 30 unit tests;
-3. renders five views of the 20 runs and 5 sanity cases, and passes each exact byte string to `pilot/reviewer.py`. Each call gets a fresh empty temporary directory holding only a copy of the reviewer, runs under `python3 -I` with an empty environment, receives its input on stdin only, and the calls run in a seeded shuffled order;
-4. repeats the whole pass in a different order and checks that every input and verdict reproduces;
-5. stops if the full-view reviewer disagrees with any label. Otherwise it scores metrics 1–4, checks the metric invariants and runs a supplementary shared-timeline analysis;
-6. writes `results/` and prints the summary.
+| File | What it holds |
+|---|---|
+| `policy.json` | Your rule, as conditions that each declare an *evidence need*: equality, order, explicit state, raw value or presence |
+| `fields.json` | Your private fields and time fields |
+| `cases.jsonl` | 5–20 authorised example logs. The tool **generates** one matched violation per condition, at the boundary. |
+| `views.json` | The redaction schemes to compare, including your own redactor as a command |
 
-Other commands:
+You get back:
+
+- **`matrix.md`:** for each condition and redaction scheme, one of four statuses:
+  - **verified**;
+  - **unverifiable** (the evidence is gone);
+  - **UNSAFE** (the reviewer is misled into wrong verdicts);
+  - **untested** (no case violates the condition).
+- **`evidence_requirements.md`:** a generated checklist of what your logs must keep.
+- **Direct exposure** of private values, and the exact bytes each reviewer call saw.
+- **An exit code for CI gating:** `--fail-on unsafe,unverifiable --gate production`.
+
+To test a model or human-in-the-loop reviewer instead of the built-in rule reviewer, plug it in with `--reviewer exec:<command>`.
+
+**Examples:**
+
+| Example | What it is |
+|---|---|
+| [`examples/accounts-payable/`](examples/accounts-payable/) | A payment agent with 12 conditions, including four-eyes, amounts and IBAN checks, and a realistic in-house redactor. It finds a design that verifies every condition with zero private values visible. |
+| [`redaction_audit/template/`](redaction_audit/template/) | The starter audit: a support agent reading customer records, from trace-shaped logs |
+| [`examples/consent-share/`](examples/consent-share/) | The paper's pilot, as toolkit input |
+
+**More documentation:**
+
+- [`docs/standards-mapping.md`](docs/standards-mapping.md): how this lines up with OpenTelemetry GenAI traces, OCSF, ISO/IEC TS 27560 consent records (through W3C DPV), PROV-O and the Presidio redactor.
+- [`spec/`](spec/): JSON Schemas for the input files.
+
+## What we found
+
+This is the pilot: 20 matched runs of a document-sharing agent under a consent rule.
+
+| How the log is redacted | Identical pairs | Reviewer correct | Allowed shares confirmed | Private values visible |
+|---|---|---|---|---|
+| Full log | 0/10 | 20/20 | 10/10 | 66/66 |
+| Uniform masks | **6/10** | 4/20 | **0/10** | 0/66 |
+| Consistent per-run aliases | 0/10 | **20/20** | 10/10 | **0/66** |
+| Aliases, expiry dropped | 2/10 | 8/20 | 0/10 | 0/66 |
+| Aliases, revocation dropped | 2/10 | 8/20 | 0/10 | 0/66 |
+
+The exploratory follow-up ran common redaction choices and two reviewer types: one that knows how the log was redacted (declared) and one that doesn't (undeclared). Full results are in [`examples/consent-share/results/`](examples/consent-share/results/).
+
+| Redaction choice | Declared reviewer | Undeclared reviewer |
+|---|---|---|
+| Type labels, a common redactor default | unverifiable | **UNSAFE:** approves 6/10 violations |
+| Hash with a random salt per event | unverifiable | **UNSAFE:** flags 10/10 authorised actions |
+| Times rounded to 10 units | unverifiable at boundaries | **UNSAFE:** 2 false alarms |
+| Keyed hash per run, or global | verified | verified |
+| Times replaced by their order within the run | verified | verified |
+
+In short:
+
+- Keep **who and which consistent within the run** (identity equality, without the identities).
+- Keep the **order** of times.
+- Record authority **state explicitly**.
+- **Declare** how the log was redacted.
+
+The paper explains which results are by construction and which are not.
+
+## Reproduce the paper's pilot
 
 ```bash
-python3 run_pilot.py --show-pair P01                     # every view's exact input and verdict for one pair
-python3 -m unittest discover -s tests -t .               # unit tests only
-python3 run_pilot.py --rebuild-fixtures                  # regenerate data/ after an intentional fixture change
-python3 run_pilot.py --freeze --freeze-label vX --freeze-note "..."   # record hashes before a run
+python3 run_pilot.py      # about 7 s; exit 0 only if all 91 checks pass
 ```
 
-Every result file except `results/run_info.json` (which holds a timestamp) is byte-identical across runs. This was verified across Python 3.12–3.14 and different `PYTHONHASHSEED` values.
+- **What it runs:** it rebuilds every number in the paper from hand-specified fixtures. Each call to the isolated reviewer gets a fresh empty directory and its input on stdin only.
+- **Pre-specification:** the protocol, data and code are checked against `FREEZE.json`, a self-attested freeze made before the main run.
+- **Toolkit cross-check:** the toolkit independently reproduces the pilot's `results/summary.csv` and `family_breakdown.csv` byte for byte, through `examples/consent-share/views.json` and the test suite.
+
+Tests:
+
+```bash
+python3 -m unittest discover -s tests -t .           # pilot (30 tests)
+python3 -m unittest discover -s tests_toolkit -t .   # toolkit (29 tests)
+```
 
 ## Layout
 
 | Path | Contents |
 |---|---|
-| `PROTOCOL.md` | Hypotheses and predictions, consent rule, fixtures, private-field decisions, views, metrics, validation and revisions |
-| `FREEZE.json` | SHA-256 history: v1.0 (protocol and data, before the main run) and v1.1 (protocol, data and all code) |
-| `pilot/fixtures.py` | Hand-specified fixtures (10 pairs, 5 sanity cases, the shared-timeline variant) with hand-written labels and rationales |
-| `pilot/policy.py` | Trusted-fact oracle, used only to check the labels |
-| `pilot/views.py` | Views A, B and C and the two C ablations; canonical JSON |
-| `pilot/reviewer.py` | Standalone three-valued reviewer (imports only `json` and `sys`) |
-| `pilot/exposure.py` | Planted-value scanner |
-| `pilot/scoring.py` | Metrics 1–4 |
-| `pilot/validate.py` | All checks |
-| `tests/` | Rule, transformation, isolation and scoring unit tests |
-| `data/fixtures.json` | Underlying records: opaque `case_id`, arbitrary `run_id`, events. No labels. |
-| `data/manifest.json` | Expected verdicts, rationales, pair IDs, families and sanity expectations |
-| `results/summary.csv`, `summary.json` | One row per view, plus full metric detail with denominators and supplementary analyses |
-| `results/family_breakdown.csv` | Reviewer metrics by view and case family |
-| `results/per_case.csv` | One row per view and case: verdict, outcome, per-condition checks, input hash, exposure |
-| `results/inputs/<view>/<case>.json` | The exact bytes each reviewer call received |
-| `results/reviewer_outputs.jsonl`, `mixed_label_groups.json`, `sanity.csv`, `validation.json`, `run_info.json` | Raw outputs, mixed-label groups, sanity results, every check and its outcome, and environment, seeds and hashes |
+| `redaction_audit/` | The reusable toolkit (`python3 -m redaction_audit`) and its starter template |
+| `docs/` | Tutorial, full reference, evidence-needs vocabulary, standards mapping |
+| `spec/` | JSON Schemas for `policy.json` and `views.json` (including redaction declarations) |
+| `examples/` | The pilot expressed as toolkit input (acceptance test) and exploratory results |
 | `paper/` | The technical report (LaTeX source and PDF) |
+| `PROTOCOL.md`, `FREEZE.json` | Pilot protocol, pre-specified hypotheses, revision log, hash history |
+| `run_pilot.py`, `pilot/`, `tests/`, `data/`, `results/` | The frozen pilot study and its outputs |
+| `tests_toolkit/` | Toolkit tests |
+| `.github/workflows/ci.yml` | CI on Linux and macOS, Python 3.9–3.13 |
 
 ## Citation and licence
 
-See `CITATION.cff`. The code is released under the MIT License (`LICENSE`). The paper, protocol, fixtures and results are released under CC BY 4.0 (`LICENSE-DATA.md`).
+See `CITATION.cff`. A Zenodo DOI will be listed here once the repository is archived.
+
+- **Code:** MIT (`LICENSE`).
+- **Paper, protocol, fixtures and results:** CC BY 4.0 (`LICENSE-DATA.md`).
 
 This work was prepared with substantial AI assistance; see the paper's acknowledgements.

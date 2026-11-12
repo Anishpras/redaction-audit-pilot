@@ -1,13 +1,13 @@
 {
-  "title": "What Evidence Do AI Agent Audit Logs Need After Redaction? A matched-pair pilot on consent verification (code, fixtures, results and paper)",
+  "title": "What Evidence Do AI Agent Audit Logs Need After Redaction? A matched-pair pilot and a reusable toolkit for auditable redaction (code, fixtures, results and paper)",
   "upload_type": "software",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "creators": [
     {
       "name": "Prashun, Anish"
     }
   ],
-  "description": "<p>Reproducible pilot (Python 3 standard library only, synthetic data). It measures whether a reviewer can verify consent for an AI agent's completed document share after the audit log is redacted. Twenty scripted runs (ten matched authorised/unauthorised pairs) are rendered as full logs, uniformly masked logs and logs with consistent within-run aliases, plus two ablations that omit expiry or revocation evidence. Run <code>python3 run_pilot.py</code> to reproduce every result.</p><p>Code: MIT. Paper, protocol, fixtures and results: CC BY 4.0. All records are fictional.</p>",
+  "description": "<p>A reusable, standard-library Python toolkit (<code>python3 -m redaction_audit</code>). It tests whether redacted action logs, such as AI agent audit logs, still let a reviewer verify an authorisation policy. Users describe their rule as conditions tagged with evidence needs (equality, order, explicit state, raw value, presence), mark private fields, provide a few authorised logs, and list redaction schemes. The toolkit generates boundary violations and reports per condition whether each scheme keeps verification possible (verified / unverifiable / unsafe), plus direct exposure of private values.</p><p>Includes the reproducible pilot study (20 matched runs; full logs, uniform masking, consistent aliases, expiry and revocation ablations) and the technical report. Run <code>python3 run_pilot.py</code> to reproduce the pilot.</p><p>Code: MIT. Paper, protocol, fixtures and results: CC BY 4.0. All records are fictional.</p>",
   "license": "mit",
   "keywords": [
     "AI agents",

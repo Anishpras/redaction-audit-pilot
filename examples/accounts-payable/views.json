@@ -1,0 +1,200 @@
+{
+  "views": [
+    {
+      "name": "full",
+      "note": "Unredacted reference.",
+      "ops": []
+    },
+    {
+      "name": "vendor_default_mask",
+      "note": "What our log vendor's PII filter does out of the box: every private value replaced by its type.",
+      "ops": [
+        {
+          "op": "mask",
+          "fields": [
+            "private"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "alias_per_run",
+      "note": "Reference: consistent per-run aliases, names and free text masked.",
+      "ops": [
+        {
+          "op": "alias",
+          "fields": [
+            "identifier"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "prod_current",
+      "note": "Current compliance export: global keyed hash on identifiers, names and text masked, times floored to the hour.",
+      "ops": [
+        {
+          "op": "pseudonym",
+          "fields": [
+            "identifier"
+          ],
+          "scope": "global",
+          "key": "example-key-use-key_env-in-production"
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "bucket",
+          "fields": [
+            "times"
+          ],
+          "size": 3600
+        }
+      ]
+    },
+    {
+      "name": "prod_proposed",
+      "note": "Proposed: per-run keyed hash, names and text masked, times replaced by within-run rank.",
+      "ops": [
+        {
+          "op": "pseudonym",
+          "fields": [
+            "identifier"
+          ],
+          "scope": "run",
+          "key": "example-key-use-key_env-in-production"
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "rank",
+          "fields": [
+            "times"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "amounts_banded",
+      "note": "Proposed: as alias_per_run, plus amounts coarsened to 1,000 currency units.",
+      "ops": [
+        {
+          "op": "alias",
+          "fields": [
+            "identifier"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "bucket",
+          "fields": [
+            "payload.amount_cents",
+            "payload.approved_amount_cents"
+          ],
+          "size": 100000
+        }
+      ]
+    },
+    {
+      "name": "prod_proposed_amounts_ranked",
+      "note": "Proposed, plus amounts replaced by their order within the run: amounts hidden, comparison kept.",
+      "ops": [
+        {
+          "op": "pseudonym",
+          "fields": [
+            "identifier"
+          ],
+          "scope": "run",
+          "key": "example-key-use-key_env-in-production"
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "rank",
+          "fields": [
+            "times"
+          ]
+        },
+        {
+          "op": "rank",
+          "fields": [
+            "amount"
+          ],
+          "group": "amounts"
+        }
+      ]
+    },
+    {
+      "name": "iban_last4_declared",
+      "note": "Other identifiers aliased; the payee IBAN partially masked (last 4 kept) and declared.",
+      "ops": [
+        {
+          "op": "alias",
+          "fields": [
+            "actor.id",
+            "payload.requested_by",
+            "payload.invoice_id",
+            "payload.approval_id",
+            "payload.payment_ref",
+            "payload.vendor_id"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "partial",
+          "fields": [
+            "payload.payee_iban"
+          ],
+          "keep_last": 4
+        }
+      ]
+    },
+    {
+      "name": "ap_redactor",
+      "note": "Our in-house regex redactor, wrapped through exec.",
+      "ops": [
+        {
+          "op": "exec",
+          "command": [
+            "python3",
+            "ap_redactor.py"
+          ]
+        }
+      ]
+    }
+  ]
+}

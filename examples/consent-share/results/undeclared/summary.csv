@@ -1,0 +1,12 @@
+view,role,identical_pairs,identical_recipient,identical_document,identical_expiry,identical_revocation,ceiling,ceiling_value,distinct_inputs,correct,missed_violations,false_alarms,abstentions,definitive_coverage,authorised_confirmed,violations_detected,exposure_distinct,exposure_summed
+A_full,core,0/10,0/4,0/2,0/2,0/2,20/20,1.0,20,20/20,0/10,0/10,0/20,20/20,10/10,10/10,66/66,132/132
+B_uniform_mask,core,6/10,4/4,2/2,0/2,0/2,14/20,0.7,14,14/20,6/10,0/10,0/20,20/20,10/10,4/10,0/66,0/132
+C_alias,core,0/10,0/4,0/2,0/2,0/2,20/20,1.0,20,20/20,0/10,0/10,0/20,20/20,10/10,10/10,0/66,0/132
+C_no_expiry,ablation,2/10,0/4,0/2,2/2,0/2,18/20,0.9,18,8/20,0/10,0/10,12/20,8/20,0/10,8/10,0/66,0/132
+C_no_revocation,ablation,2/10,0/4,0/2,0/2,2/2,18/20,0.9,18,8/20,0/10,0/10,12/20,8/20,0/10,8/10,0/66,0/132
+D_pseudonym_event,exploratory,0/10,0/4,0/2,0/2,0/2,20/20,1.0,20,10/20,0/10,10/10,0/20,20/20,0/10,10/10,0/66,0/132
+E_pseudonym_run,exploratory,0/10,0/4,0/2,0/2,0/2,20/20,1.0,20,20/20,0/10,0/10,0/20,20/20,10/10,10/10,0/66,0/132
+F_pseudonym_global,exploratory,0/10,0/4,0/2,0/2,0/2,20/20,1.0,20,20/20,0/10,0/10,0/20,20/20,10/10,10/10,0/66,0/132
+G_times_bucket10,exploratory,2/10,0/4,0/2,1/2,1/2,18/20,0.9,18,18/20,0/10,2/10,0/20,20/20,8/10,10/10,0/66,0/132
+H_times_rank,exploratory,0/10,0/4,0/2,0/2,0/2,20/20,1.0,19,20/20,0/10,0/10,0/20,20/20,10/10,10/10,0/66,0/132
+I_purpose_masked,exploratory,0/10,0/4,0/2,0/2,0/2,20/20,1.0,20,20/20,0/10,0/10,0/20,20/20,10/10,10/10,0/66,0/132

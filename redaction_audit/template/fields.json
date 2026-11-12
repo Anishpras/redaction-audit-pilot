@@ -1,0 +1,11 @@
+{
+  "private": [
+    {"path": "attributes.agent_id", "category": "identifier", "entity": "agent"},
+    {"path": "attributes.customer_id", "category": "identifier", "entity": "customer"},
+    {"path": "attributes.ticket_id", "category": "identifier", "entity": "ticket"},
+    {"path": "attributes.customer_name", "category": "name"},
+    {"path": "attributes.prompt_summary", "category": "content"},
+    {"path": "attributes.result_excerpt", "category": "content"}
+  ],
+  "times": ["start_time", "attributes.opened_at", "attributes.closes_at", "attributes.closed_at"]
+}

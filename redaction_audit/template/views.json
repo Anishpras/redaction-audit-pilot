@@ -1,0 +1,27 @@
+{
+  "views": [
+    {"name": "full", "note": "Unredacted reference.", "ops": []},
+    {"name": "replace_with_type", "note": "Every private value replaced by its type (the default of many redaction tools).",
+     "ops": [{"op": "mask", "fields": ["private"]}]},
+    {"name": "alias_per_run", "note": "Consistent first-appearance aliases within each run; text masked.",
+     "ops": [{"op": "alias", "fields": ["identifier"]}, {"op": "mask", "fields": ["name", "content"]}]},
+    {"name": "hash_per_event", "note": "Keyed hash with a fresh salt per event: the same person differs between spans.",
+     "ops": [{"op": "pseudonym", "fields": ["identifier"], "scope": "event"}, {"op": "mask", "fields": ["name", "content"]}]},
+    {"name": "hash_per_run", "note": "Keyed hash salted per run. In production set key_env to a secret variable.",
+     "ops": [{"op": "pseudonym", "fields": ["identifier"], "scope": "run"}, {"op": "mask", "fields": ["name", "content"]}]},
+    {"name": "times_bucket_60", "note": "Aliases plus times floored to the minute (60 s).",
+     "ops": [{"op": "alias", "fields": ["identifier"]}, {"op": "mask", "fields": ["name", "content"]},
+             {"op": "bucket", "fields": ["times"], "size": 60}]},
+    {"name": "times_rank", "note": "Aliases plus times replaced by their order within the run.",
+     "ops": [{"op": "alias", "fields": ["identifier"]}, {"op": "mask", "fields": ["name", "content"]},
+             {"op": "rank", "fields": ["times"]}]},
+    {"name": "no_ticket_status", "note": "A minimal log that drops the ticket's status fields.",
+     "ops": [{"op": "alias", "fields": ["identifier"]}, {"op": "mask", "fields": ["name", "content"]},
+             {"op": "drop", "fields": ["attributes.status", "attributes.closed_at"], "where": {"span": "ticket_assignment"}}]},
+    {"name": "role_masked", "note": "Aliases plus the agent role masked.",
+     "ops": [{"op": "alias", "fields": ["identifier"]}, {"op": "mask", "fields": ["name", "content"]},
+             {"op": "mask", "fields": ["attributes.agent_role"]}]},
+    {"name": "my_redactor", "note": "Your own redactor as a command (see my_redactor.py). It declares nothing, like most real tools.",
+     "ops": [{"op": "exec", "command": ["python3", "my_redactor.py"]}]}
+  ]
+}

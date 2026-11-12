@@ -1,0 +1,258 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Anishpras/redaction-audit-pilot/spec/policy.schema.json",
+  "title": "redaction_audit policy (evidence requirements)",
+  "description": "An authorisation rule as a conjunction of conditions, each tagged with the kind of evidence it needs. Role paths are '<role>.<event-relative dotted path>'. Order comparisons need numbers (convert timestamps to epoch seconds). Unknown keys are rejected by the tool.",
+  "type": "object",
+  "required": [
+    "roles",
+    "conditions"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Role of the audited action; generated violations prefer to change the other side."
+    },
+    "roles": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "where"
+        ],
+        "properties": {
+          "where": {
+            "type": "object",
+            "minProperties": 1,
+            "description": "Event-relative path -> required value. Exactly one event per run must match."
+          }
+        }
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/condition"
+      }
+    },
+    "decoys": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array"
+      },
+      "description": "Named pools of replacement values for mutations ({\"decoy\": \"pool\"})."
+    }
+  },
+  "$defs": {
+    "rolePath": {
+      "type": "string",
+      "pattern": "^[^.]+\\..+$"
+    },
+    "order": {
+      "type": "object",
+      "required": [
+        "left",
+        "op",
+        "right"
+      ],
+      "properties": {
+        "left": {
+          "$ref": "#/$defs/rolePath"
+        },
+        "op": {
+          "enum": [
+            "<",
+            "<=",
+            ">",
+            ">="
+          ]
+        },
+        "right": {
+          "$ref": "#/$defs/rolePath"
+        }
+      }
+    },
+    "mutation": {
+      "type": "object",
+      "properties": {
+        "set": {
+          "type": "object",
+          "description": "role path -> literal, {copy: path}, {add: [path, int]}, {different_from: path}, {decoy: pool} or {literal: value}"
+        },
+        "delete": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rolePath"
+          }
+        }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "required": [
+        "id",
+        "need"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "need": {
+          "enum": [
+            "equality",
+            "order",
+            "explicit_state",
+            "raw_value",
+            "presence"
+          ]
+        },
+        "left": {
+          "$ref": "#/$defs/rolePath"
+        },
+        "right": {
+          "$ref": "#/$defs/rolePath"
+        },
+        "op": {
+          "enum": [
+            "<",
+            "<=",
+            ">",
+            ">="
+          ]
+        },
+        "field": {
+          "$ref": "#/$defs/rolePath"
+        },
+        "pass": {
+          "type": "array"
+        },
+        "fail": {
+          "type": "array"
+        },
+        "fail_only_if": {
+          "$ref": "#/$defs/order"
+        },
+        "allowed": {
+          "type": "array"
+        },
+        "mutate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mutation"
+          }
+        },
+        "relation": {
+          "enum": [
+            "same",
+            "different"
+          ],
+          "default": "same",
+          "description": "equality only: 'different' expresses four-eyes / separation-of-duty rules"
+        },
+        "mutations": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/mutation"
+            }
+          },
+          "description": "Several violations for this condition (alternative to 'mutate')"
+        },
+        "note": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "need": {
+                "const": "equality"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "left",
+              "right"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "need": {
+                "const": "order"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "left",
+              "op",
+              "right"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "need": {
+                "const": "explicit_state"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "field",
+              "pass",
+              "fail"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "need": {
+                "const": "raw_value"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "field",
+              "allowed"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "need": {
+                "const": "presence"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "field"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

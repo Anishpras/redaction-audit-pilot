@@ -1,0 +1,30 @@
+{
+  "name": "Support agent reads a customer record",
+  "description": "An agent's completed read_customer_record call is authorised only if a ticket assignment links the same agent to the same customer, the read happens at or after the assignment opens and strictly before its scheduled close, the ticket was not closed at or before the read, and the agent's role is allowed to read customer records. Replace this policy with your own; keep the structure.",
+  "subject": "call",
+  "roles": {
+    "assignment": {"where": {"span": "ticket_assignment"}},
+    "call": {"where": {"span": "execute_tool", "attributes.tool": "read_customer_record", "attributes.outcome": "ok"}}
+  },
+  "conditions": [
+    {"id": "agent_matches", "need": "equality",
+     "left": "assignment.attributes.agent_id", "right": "call.attributes.agent_id"},
+    {"id": "customer_matches", "need": "equality",
+     "left": "assignment.attributes.customer_id", "right": "call.attributes.customer_id",
+     "mutate": [{"set": {"call.attributes.customer_id": {"decoy": "customer_ids"},
+                         "call.attributes.customer_name": {"decoy": "customer_names"}}}]},
+    {"id": "after_assignment", "need": "order",
+     "left": "assignment.attributes.opened_at", "op": "<=", "right": "call.start_time"},
+    {"id": "before_scheduled_close", "need": "order",
+     "left": "call.start_time", "op": "<", "right": "assignment.attributes.closes_at"},
+    {"id": "ticket_not_closed", "need": "explicit_state", "field": "assignment.attributes.status",
+     "pass": ["open"], "fail": ["closed"],
+     "fail_only_if": {"left": "assignment.attributes.closed_at", "op": "<=", "right": "call.start_time"}},
+    {"id": "role_allowed", "need": "raw_value", "field": "call.attributes.agent_role",
+     "allowed": ["support", "support_lead"]}
+  ],
+  "decoys": {
+    "customer_ids": ["cus-00000-decoy", "cus-00001-decoy"],
+    "customer_names": ["Decoy Customer One", "Decoy Customer Two"]
+  }
+}

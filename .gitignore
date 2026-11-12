@@ -5,3 +5,7 @@ paper/*.aux
 paper/*.log
 paper/*.out
 paper/*.toc
+examples/**/inputs/
+examples/**/per_case.jsonl
+*.egg-info/
+build/

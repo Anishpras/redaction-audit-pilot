@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Anishpras/redaction-audit-pilot/spec/views.schema.json",
+  "title": "redaction_audit views (redaction transforms) and redaction declarations",
+  "type": "object",
+  "required": [
+    "views"
+  ],
+  "properties": {
+    "views": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "declare": {
+            "type": "boolean",
+            "default": true,
+            "description": "Emit the redaction header in the reviewer input."
+          },
+          "ops": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "op"
+              ],
+              "properties": {
+                "op": {
+                  "enum": [
+                    "keep",
+                    "mask",
+                    "alias",
+                    "pseudonym",
+                    "partial",
+                    "drop",
+                    "bucket",
+                    "rank",
+                    "exec"
+                  ]
+                },
+                "fields": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "'private', a category (identifier/name/content), 'times', or event-relative paths"
+                },
+                "scope": {
+                  "enum": [
+                    "run",
+                    "event",
+                    "global"
+                  ]
+                },
+                "key": {
+                  "type": "string"
+                },
+                "key_env": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "group": {
+                  "type": "string"
+                },
+                "where": {
+                  "type": "object"
+                },
+                "command": {
+                  "type": [
+                    "array",
+                    "string"
+                  ]
+                },
+                "timeout": {
+                  "type": "number"
+                },
+                "keep_last": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "partial: characters kept at the end"
+                },
+                "fill": {
+                  "type": "string",
+                  "default": "*"
+                },
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "declaration": {
+      "description": "Value of the reviewer input's 'redaction' header: event-relative path -> what was done.",
+      "type": "object",
+      "required": [
+        "method"
+      ],
+      "properties": {
+        "method": {
+          "enum": [
+            "keep",
+            "mask",
+            "alias",
+            "pseudonym",
+            "partial",
+            "drop",
+            "bucket",
+            "rank"
+          ]
+        },
+        "scope": {
+          "enum": [
+            "run",
+            "event",
+            "global"
+          ]
+        },
+        "size": {
+          "type": "number"
+        },
+        "group": {
+          "type": "string"
+        },
+        "keep_last": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

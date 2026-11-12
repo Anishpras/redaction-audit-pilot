@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "redaction-audit"
+version = "1.2.0"
+description = "Test whether redacted action logs (e.g. AI agent audit logs) still let a reviewer verify an authorisation policy, and what they expose."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Anish Prashun"}]
+keywords = ["audit logs", "redaction", "pseudonymisation", "AI agents", "policy verification", "privacy"]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/Anishpras/redaction-audit-pilot"
+
+[project.scripts]
+redaction-audit = "redaction_audit.__main__:main"
+
+[tool.setuptools]
+packages = ["redaction_audit"]
+
+[tool.setuptools.package-data]
+redaction_audit = ["template/*"]

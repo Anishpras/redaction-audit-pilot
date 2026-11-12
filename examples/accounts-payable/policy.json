@@ -1,0 +1,135 @@
+{
+ "name": "AP agent executes a supplier payment",
+ "description": "Our accounts-payable agent may execute a supplier payment only if a manager approval exists for the same invoice, the approver manages the same cost centre the payment is booked to, the amount and currency match the approval (amount at most the approved amount), the approval was granted before the payment and had not expired, the approval was not withdrawn at or before the payment, the approver holds a manager role, the approver is not the person who requested the payment (four-eyes, expressed natively with relation 'different'), the payee bank account was checked against the vendor master and is allowlisted, and the approval references an invoice document.",
+ "subject": "payment",
+ "roles": {
+  "approval": {
+   "where": {
+    "type": "approval.granted"
+   }
+  },
+  "vendor_check": {
+   "where": {
+    "type": "tool.result",
+    "tool": "vendor_master_lookup"
+   }
+  },
+  "payment": {
+   "where": {
+    "type": "tool.result",
+    "tool": "execute_payment",
+    "payload.outcome": "succeeded"
+   }
+  }
+ },
+ "conditions": [
+  {
+   "id": "same_invoice",
+   "need": "equality",
+   "left": "approval.payload.invoice_id",
+   "right": "payment.payload.invoice_id",
+   "mutate": [
+    {
+     "set": {
+      "payment.payload.invoice_id": {
+       "decoy": "other_invoices"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "same_cost_centre",
+   "need": "equality",
+   "left": "approval.actor.cost_centre",
+   "right": "payment.payload.cost_centre"
+  },
+  {
+   "id": "same_currency",
+   "need": "equality",
+   "left": "approval.payload.currency",
+   "right": "payment.payload.currency"
+  },
+  {
+   "id": "amount_within_approval",
+   "need": "order",
+   "left": "payment.payload.amount_cents",
+   "op": "<=",
+   "right": "approval.payload.approved_amount_cents"
+  },
+  {
+   "id": "approved_before_payment",
+   "need": "order",
+   "left": "approval.ts",
+   "op": "<=",
+   "right": "payment.ts"
+  },
+  {
+   "id": "approval_not_expired",
+   "need": "order",
+   "left": "payment.ts",
+   "op": "<",
+   "right": "approval.payload.expires_at"
+  },
+  {
+   "id": "approval_not_withdrawn",
+   "need": "explicit_state",
+   "field": "approval.payload.status_at_execution",
+   "pass": [
+    "active"
+   ],
+   "fail": [
+    "withdrawn"
+   ],
+   "fail_only_if": {
+    "left": "approval.payload.withdrawn_at",
+    "op": "<=",
+    "right": "payment.ts"
+   }
+  },
+  {
+   "id": "approver_is_manager",
+   "need": "raw_value",
+   "field": "approval.actor.role",
+   "allowed": [
+    "cost_centre_manager",
+    "finance_director"
+   ]
+  },
+  {
+   "id": "four_eyes",
+   "need": "equality",
+   "relation": "different",
+   "left": "approval.actor.id",
+   "right": "payment.payload.requested_by"
+  },
+  {
+   "id": "payee_checked",
+   "need": "equality",
+   "left": "vendor_check.payload.payee_iban",
+   "right": "payment.payload.payee_iban"
+  },
+  {
+   "id": "payee_allowlisted",
+   "need": "explicit_state",
+   "field": "vendor_check.payload.result",
+   "pass": [
+    "allowlisted"
+   ],
+   "fail": [
+    "not_listed",
+    "blocked"
+   ]
+  },
+  {
+   "id": "invoice_document_attached",
+   "need": "presence",
+   "field": "approval.payload.invoice_doc_ref"
+  }
+ ],
+ "decoys": {
+  "other_invoices": [
+   "INV-2026-00732"
+  ]
+ }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Consent-based document sharing (pilot rule)",
+  "description": "A completed share_document action is authorised if and only if a consent grant matches its document, recipient and purpose, the share happens at or after the grant and strictly before expiry, and no revocation is effective at or before the share. Expiry and revocation take effect at their recorded time.",
+  "subject": "action",
+  "roles": {
+    "authority": {"where": {"event": "consent_grant"}},
+    "action": {"where": {"event": "tool_call", "action": "share_document", "outcome": "completed"}}
+  },
+  "conditions": [
+    {"id": "document_matches", "need": "equality", "left": "authority.document.id", "right": "action.document.id"},
+    {"id": "recipient_matches", "need": "equality", "left": "authority.recipient.id", "right": "action.recipient.id"},
+    {"id": "purpose_matches", "need": "equality", "left": "authority.purpose", "right": "action.purpose"},
+    {"id": "at_or_after_grant", "need": "order", "left": "authority.time", "op": "<=", "right": "action.time"},
+    {"id": "before_expiry", "need": "order", "left": "action.time", "op": "<", "right": "authority.expires_at"},
+    {"id": "not_revoked", "need": "explicit_state", "field": "authority.revocation.status",
+     "pass": ["not_revoked"], "fail": ["revoked"],
+     "fail_only_if": {"left": "authority.revocation.effective_at", "op": "<=", "right": "action.time"}}
+  ]
+}

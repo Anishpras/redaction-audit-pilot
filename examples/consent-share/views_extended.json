@@ -1,0 +1,238 @@
+{
+  "views": [
+    {
+      "name": "A_full",
+      "role": "core",
+      "ops": []
+    },
+    {
+      "name": "B_uniform_mask",
+      "role": "core",
+      "ops": [
+        {
+          "op": "mask",
+          "fields": [
+            "private"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C_alias",
+      "role": "core",
+      "ops": [
+        {
+          "op": "alias",
+          "fields": [
+            "identifier"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C_no_expiry",
+      "role": "ablation",
+      "ops": [
+        {
+          "op": "alias",
+          "fields": [
+            "identifier"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "drop",
+          "fields": [
+            "expires_at"
+          ],
+          "where": {
+            "event": "consent_grant"
+          }
+        }
+      ]
+    },
+    {
+      "name": "C_no_revocation",
+      "role": "ablation",
+      "ops": [
+        {
+          "op": "alias",
+          "fields": [
+            "identifier"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "drop",
+          "fields": [
+            "revocation"
+          ],
+          "where": {
+            "event": "consent_grant"
+          }
+        }
+      ]
+    },
+    {
+      "name": "D_pseudonym_event",
+      "role": "exploratory",
+      "note": "Keyed hash salted per event: the same person gets a different pseudonym in the grant and the share (behaviour of a hash operator with a random salt per entity).",
+      "ops": [
+        {
+          "op": "pseudonym",
+          "fields": [
+            "identifier"
+          ],
+          "scope": "event"
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "E_pseudonym_run",
+      "role": "exploratory",
+      "note": "Keyed hash salted per run: consistent within a run, unlinkable across runs; works in streaming pipelines.",
+      "ops": [
+        {
+          "op": "pseudonym",
+          "fields": [
+            "identifier"
+          ],
+          "scope": "run"
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "F_pseudonym_global",
+      "role": "exploratory",
+      "note": "Keyed hash without salt: consistent everywhere, so linkable across runs.",
+      "ops": [
+        {
+          "op": "pseudonym",
+          "fields": [
+            "identifier"
+          ],
+          "scope": "global"
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "G_times_bucket10",
+      "role": "exploratory",
+      "note": "Aliases plus times floored to multiples of 10 (a common mitigation for timestamp linkage).",
+      "ops": [
+        {
+          "op": "alias",
+          "fields": [
+            "identifier"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "bucket",
+          "fields": [
+            "times"
+          ],
+          "size": 10
+        }
+      ]
+    },
+    {
+      "name": "H_times_rank",
+      "role": "exploratory",
+      "note": "Aliases plus times replaced by their dense rank within the run (order and ties kept, values hidden).",
+      "ops": [
+        {
+          "op": "alias",
+          "fields": [
+            "identifier"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "rank",
+          "fields": [
+            "times"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "I_purpose_masked",
+      "role": "exploratory",
+      "note": "Aliases plus the purpose masked.",
+      "ops": [
+        {
+          "op": "alias",
+          "fields": [
+            "identifier"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "op": "mask",
+          "fields": [
+            "purpose"
+          ]
+        }
+      ]
+    }
+  ]
+}

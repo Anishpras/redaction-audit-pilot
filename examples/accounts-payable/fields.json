@@ -1,0 +1,76 @@
+{
+  "private": [
+    {
+      "path": "actor.id",
+      "category": "identifier",
+      "entity": "employee"
+    },
+    {
+      "path": "payload.requested_by",
+      "category": "identifier",
+      "entity": "employee"
+    },
+    {
+      "path": "actor.name",
+      "category": "name"
+    },
+    {
+      "path": "payload.invoice_id",
+      "category": "identifier",
+      "entity": "invoice"
+    },
+    {
+      "path": "payload.approval_id",
+      "category": "identifier",
+      "entity": "approval"
+    },
+    {
+      "path": "payload.payment_ref",
+      "category": "identifier",
+      "entity": "payment"
+    },
+    {
+      "path": "payload.payee_iban",
+      "category": "identifier",
+      "entity": "payee"
+    },
+    {
+      "path": "payload.vendor_id",
+      "category": "identifier",
+      "entity": "vendor"
+    },
+    {
+      "path": "payload.vendor_name",
+      "category": "name"
+    },
+    {
+      "path": "payload.invoice_doc_ref",
+      "category": "content"
+    },
+    {
+      "path": "payload.memo",
+      "category": "content"
+    },
+    {
+      "path": "payload.comment",
+      "category": "content"
+    },
+    {
+      "path": "payload.prompt_summary",
+      "category": "content"
+    },
+    {
+      "path": "payload.amount_cents",
+      "category": "amount"
+    },
+    {
+      "path": "payload.approved_amount_cents",
+      "category": "amount"
+    }
+  ],
+  "times": [
+    "ts",
+    "payload.expires_at",
+    "payload.withdrawn_at"
+  ]
+}

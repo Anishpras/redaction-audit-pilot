@@ -1,0 +1,11 @@
+{
+  "private": [
+    {"path": "document.id", "category": "identifier", "entity": "document"},
+    {"path": "recipient.id", "category": "identifier", "entity": "recipient"},
+    {"path": "document.title", "category": "name"},
+    {"path": "recipient.name", "category": "name"},
+    {"path": "document.excerpt", "category": "content"},
+    {"path": "message", "category": "content"}
+  ],
+  "times": ["time", "expires_at", "revocation.effective_at"]
+}

@@ -1,0 +1,17 @@
+{
+  "views": [
+    {"name": "A_full", "role": "core", "ops": []},
+    {"name": "B_uniform_mask", "role": "core", "ops": [{"op": "mask", "fields": ["private"]}]},
+    {"name": "C_alias", "role": "core", "ops": [
+      {"op": "alias", "fields": ["identifier"]},
+      {"op": "mask", "fields": ["name", "content"]}]},
+    {"name": "C_no_expiry", "role": "ablation", "ops": [
+      {"op": "alias", "fields": ["identifier"]},
+      {"op": "mask", "fields": ["name", "content"]},
+      {"op": "drop", "fields": ["expires_at"], "where": {"event": "consent_grant"}}]},
+    {"name": "C_no_revocation", "role": "ablation", "ops": [
+      {"op": "alias", "fields": ["identifier"]},
+      {"op": "mask", "fields": ["name", "content"]},
+      {"op": "drop", "fields": ["revocation"], "where": {"event": "consent_grant"}}]}
+  ]
+}

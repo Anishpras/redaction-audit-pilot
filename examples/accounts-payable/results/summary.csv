@@ -1,0 +1,10 @@
+view,role,identical_pairs,identical_same_invoice,identical_same_cost_centre,identical_same_currency,identical_amount_within_approval,identical_approved_before_payment,identical_approval_not_expired,identical_approval_not_withdrawn,identical_approver_is_manager,identical_four_eyes,identical_payee_checked,identical_payee_allowlisted,identical_invoice_document_attached,ceiling,ceiling_value,distinct_inputs,correct,missed_violations,false_alarms,abstentions,definitive_coverage,authorised_confirmed,violations_detected,exposure_distinct,exposure_summed
+full,,0/60,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,65/65,1.0,65,65/65,0/60,0/5,0/65,65/65,5/5,60/60,81/81,1030/1030
+vendor_default_mask,,20/60,5/5,0/5,0/5,5/5,0/5,0/5,0/5,0/5,5/5,5/5,0/5,0/5,60/65,0.9231,45,40/65,0/60,0/5,25/65,40/65,0/5,40/60,0/81,0/1030
+alias_per_run,,0/60,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,65/65,1.0,65,65/65,0/60,0/5,0/65,65/65,5/5,60/60,13/81,106/1030
+prod_current,,2/60,0/5,0/5,0/5,0/5,1/5,1/5,0/5,0/5,0/5,0/5,0/5,0/5,63/65,0.9692,63,48/65,0/60,0/5,17/65,48/65,3/5,45/60,13/81,106/1030
+prod_proposed,,0/60,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,65/65,1.0,65,65/65,0/60,0/5,0/65,65/65,5/5,60/60,13/81,106/1030
+amounts_banded,,2/60,0/5,0/5,0/5,2/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,63/65,0.9692,63,58/65,0/60,0/5,7/65,58/65,2/5,56/60,1/81,13/1030
+prod_proposed_amounts_ranked,,0/60,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,65/65,1.0,65,65/65,0/60,0/5,0/65,65/65,5/5,60/60,0/81,0/1030
+iban_last4_declared,,5/60,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,0/5,5/5,0/5,0/5,60/65,0.9231,60,55/65,0/60,0/5,10/65,55/65,0/5,55/60,13/81,106/1030
+ap_redactor,,6/60,0/5,0/5,0/5,0/5,1/5,0/5,0/5,0/5,0/5,5/5,0/5,0/5,60/65,0.9231,59,45/65,4/60,0/5,16/65,49/65,4/5,41/60,44/81,579/1030

@@ -1,0 +1,2158 @@
+{
+  "A_full": {
+    "role": "core",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 0,
+          "of": 2
+        },
+        "revocation": {
+          "n": 0,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 20,
+      "runs": 20,
+      "ceiling": 1.0,
+      "distinct_inputs": 20
+    },
+    "reviewer": {
+      "correct": {
+        "n": 20,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 20,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 10,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 10,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 8,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 66,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 132,
+        "of": 132
+      }
+    }
+  },
+  "B_uniform_mask": {
+    "role": "core",
+    "status": "unsafe",
+    "identical_pairs": {
+      "identical": {
+        "n": 6,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 4,
+          "of": 4
+        },
+        "document": {
+          "n": 2,
+          "of": 2
+        },
+        "expiry": {
+          "n": 0,
+          "of": 2
+        },
+        "revocation": {
+          "n": 0,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 14,
+      "runs": 20,
+      "ceiling": 0.7,
+      "distinct_inputs": 14
+    },
+    "reviewer": {
+      "correct": {
+        "n": 14,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 6,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 20,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 10,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 4,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 4,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 4,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 2,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 2,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  },
+  "C_alias": {
+    "role": "core",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 0,
+          "of": 2
+        },
+        "revocation": {
+          "n": 0,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 20,
+      "runs": 20,
+      "ceiling": 1.0,
+      "distinct_inputs": 20
+    },
+    "reviewer": {
+      "correct": {
+        "n": 20,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 20,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 10,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 10,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 8,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  },
+  "C_no_expiry": {
+    "role": "ablation",
+    "status": "unverifiable",
+    "identical_pairs": {
+      "identical": {
+        "n": 2,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 2,
+          "of": 2
+        },
+        "revocation": {
+          "n": 0,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 18,
+      "runs": 20,
+      "ceiling": 0.9,
+      "distinct_inputs": 18
+    },
+    "reviewer": {
+      "correct": {
+        "n": 8,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 12,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 8,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 0,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 8,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 4,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 4,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 2,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 2,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 0,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 4,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 0,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 2,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 2,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  },
+  "C_no_revocation": {
+    "role": "ablation",
+    "status": "unverifiable",
+    "identical_pairs": {
+      "identical": {
+        "n": 2,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 0,
+          "of": 2
+        },
+        "revocation": {
+          "n": 2,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 18,
+      "runs": 20,
+      "ceiling": 0.9,
+      "distinct_inputs": 18
+    },
+    "reviewer": {
+      "correct": {
+        "n": 8,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 12,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 8,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 0,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 8,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 4,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 4,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 2,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 2,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 2,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 2,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 0,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 4,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 0,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  },
+  "D_pseudonym_event": {
+    "role": "exploratory",
+    "status": "unsafe",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 0,
+          "of": 2
+        },
+        "revocation": {
+          "n": 0,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 20,
+      "runs": 20,
+      "ceiling": 1.0,
+      "distinct_inputs": 20
+    },
+    "reviewer": {
+      "correct": {
+        "n": 10,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 10,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 20,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 0,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 10,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 4,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 4,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 2,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 2,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 2,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 2,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 2,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 2,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  },
+  "E_pseudonym_run": {
+    "role": "exploratory",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 0,
+          "of": 2
+        },
+        "revocation": {
+          "n": 0,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 20,
+      "runs": 20,
+      "ceiling": 1.0,
+      "distinct_inputs": 20
+    },
+    "reviewer": {
+      "correct": {
+        "n": 20,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 20,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 10,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 10,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 8,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  },
+  "F_pseudonym_global": {
+    "role": "exploratory",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 0,
+          "of": 2
+        },
+        "revocation": {
+          "n": 0,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 20,
+      "runs": 20,
+      "ceiling": 1.0,
+      "distinct_inputs": 20
+    },
+    "reviewer": {
+      "correct": {
+        "n": 20,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 20,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 10,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 10,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 8,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  },
+  "G_times_bucket10": {
+    "role": "exploratory",
+    "status": "unsafe",
+    "identical_pairs": {
+      "identical": {
+        "n": 2,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 1,
+          "of": 2
+        },
+        "revocation": {
+          "n": 1,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 18,
+      "runs": 20,
+      "ceiling": 0.9,
+      "distinct_inputs": 18
+    },
+    "reviewer": {
+      "correct": {
+        "n": 18,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 2,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 20,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 8,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 10,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 8,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 3,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 1,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 1,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 3,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 1,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 1,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  },
+  "H_times_rank": {
+    "role": "exploratory",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 0,
+          "of": 2
+        },
+        "revocation": {
+          "n": 0,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 20,
+      "runs": 20,
+      "ceiling": 1.0,
+      "distinct_inputs": 19
+    },
+    "reviewer": {
+      "correct": {
+        "n": 20,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 20,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 10,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 10,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 8,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  },
+  "I_purpose_masked": {
+    "role": "exploratory",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "n": 0,
+          "of": 4
+        },
+        "document": {
+          "n": 0,
+          "of": 2
+        },
+        "expiry": {
+          "n": 0,
+          "of": 2
+        },
+        "revocation": {
+          "n": 0,
+          "of": 2
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 20,
+      "runs": 20,
+      "ceiling": 1.0,
+      "distinct_inputs": 20
+    },
+    "reviewer": {
+      "correct": {
+        "n": 20,
+        "of": 20
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 10
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 10
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 20
+      },
+      "definitive_coverage": {
+        "n": 20,
+        "of": 20
+      },
+      "authorised_confirmed": {
+        "n": 10,
+        "of": 10
+      },
+      "violations_detected": {
+        "n": 10,
+        "of": 10
+      },
+      "by_family": {
+        "recipient": {
+          "correct": {
+            "n": 8,
+            "of": 8
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 4
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 4
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 8
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 8
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 4
+          },
+          "violations_detected": {
+            "n": 4,
+            "of": 4
+          }
+        },
+        "document": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "expiry": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        },
+        "revocation": {
+          "correct": {
+            "n": 4,
+            "of": 4
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 2
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 2
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 4
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 4
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 2
+          },
+          "violations_detected": {
+            "n": 2,
+            "of": 2
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 66
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 132
+      }
+    }
+  }
+}

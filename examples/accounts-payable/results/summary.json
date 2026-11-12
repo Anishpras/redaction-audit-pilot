@@ -1,0 +1,4214 @@
+{
+  "full": {
+    "role": "",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "n": 0,
+          "of": 5
+        },
+        "same_cost_centre": {
+          "n": 0,
+          "of": 5
+        },
+        "same_currency": {
+          "n": 0,
+          "of": 5
+        },
+        "amount_within_approval": {
+          "n": 0,
+          "of": 5
+        },
+        "approved_before_payment": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_expired": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_withdrawn": {
+          "n": 0,
+          "of": 5
+        },
+        "approver_is_manager": {
+          "n": 0,
+          "of": 5
+        },
+        "four_eyes": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_checked": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_allowlisted": {
+          "n": 0,
+          "of": 5
+        },
+        "invoice_document_attached": {
+          "n": 0,
+          "of": 5
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 65,
+      "runs": 65,
+      "ceiling": 1.0,
+      "distinct_inputs": 65
+    },
+    "reviewer": {
+      "correct": {
+        "n": 65,
+        "of": 65
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 60
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 5
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 65
+      },
+      "definitive_coverage": {
+        "n": 65,
+        "of": 65
+      },
+      "authorised_confirmed": {
+        "n": 5,
+        "of": 5
+      },
+      "violations_detected": {
+        "n": 60,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_cost_centre": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_currency": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "amount_within_approval": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approved_before_payment": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_expired": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_withdrawn": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approver_is_manager": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "four_eyes": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_checked": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_allowlisted": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "invoice_document_attached": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 81,
+        "of": 81
+      },
+      "summed_over_inputs": {
+        "n": 1030,
+        "of": 1030
+      }
+    }
+  },
+  "vendor_default_mask": {
+    "role": "",
+    "status": "unverifiable",
+    "identical_pairs": {
+      "identical": {
+        "n": 20,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "n": 5,
+          "of": 5
+        },
+        "same_cost_centre": {
+          "n": 0,
+          "of": 5
+        },
+        "same_currency": {
+          "n": 0,
+          "of": 5
+        },
+        "amount_within_approval": {
+          "n": 5,
+          "of": 5
+        },
+        "approved_before_payment": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_expired": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_withdrawn": {
+          "n": 0,
+          "of": 5
+        },
+        "approver_is_manager": {
+          "n": 0,
+          "of": 5
+        },
+        "four_eyes": {
+          "n": 5,
+          "of": 5
+        },
+        "payee_checked": {
+          "n": 5,
+          "of": 5
+        },
+        "payee_allowlisted": {
+          "n": 0,
+          "of": 5
+        },
+        "invoice_document_attached": {
+          "n": 0,
+          "of": 5
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 60,
+      "runs": 65,
+      "ceiling": 0.9231,
+      "distinct_inputs": 45
+    },
+    "reviewer": {
+      "correct": {
+        "n": 40,
+        "of": 65
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 60
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 5
+      },
+      "abstentions": {
+        "n": 25,
+        "of": 65
+      },
+      "definitive_coverage": {
+        "n": 40,
+        "of": 65
+      },
+      "authorised_confirmed": {
+        "n": 0,
+        "of": 5
+      },
+      "violations_detected": {
+        "n": 40,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "correct": {
+            "n": 0,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 10,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 0,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "same_cost_centre": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_currency": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "amount_within_approval": {
+          "correct": {
+            "n": 0,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 10,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 0,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "approved_before_payment": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_expired": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_withdrawn": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approver_is_manager": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "four_eyes": {
+          "correct": {
+            "n": 0,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 10,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 0,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "payee_checked": {
+          "correct": {
+            "n": 0,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 10,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 0,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "payee_allowlisted": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "invoice_document_attached": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 81
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 1030
+      }
+    }
+  },
+  "alias_per_run": {
+    "role": "",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "n": 0,
+          "of": 5
+        },
+        "same_cost_centre": {
+          "n": 0,
+          "of": 5
+        },
+        "same_currency": {
+          "n": 0,
+          "of": 5
+        },
+        "amount_within_approval": {
+          "n": 0,
+          "of": 5
+        },
+        "approved_before_payment": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_expired": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_withdrawn": {
+          "n": 0,
+          "of": 5
+        },
+        "approver_is_manager": {
+          "n": 0,
+          "of": 5
+        },
+        "four_eyes": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_checked": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_allowlisted": {
+          "n": 0,
+          "of": 5
+        },
+        "invoice_document_attached": {
+          "n": 0,
+          "of": 5
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 65,
+      "runs": 65,
+      "ceiling": 1.0,
+      "distinct_inputs": 65
+    },
+    "reviewer": {
+      "correct": {
+        "n": 65,
+        "of": 65
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 60
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 5
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 65
+      },
+      "definitive_coverage": {
+        "n": 65,
+        "of": 65
+      },
+      "authorised_confirmed": {
+        "n": 5,
+        "of": 5
+      },
+      "violations_detected": {
+        "n": 60,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_cost_centre": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_currency": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "amount_within_approval": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approved_before_payment": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_expired": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_withdrawn": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approver_is_manager": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "four_eyes": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_checked": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_allowlisted": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "invoice_document_attached": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 13,
+        "of": 81
+      },
+      "summed_over_inputs": {
+        "n": 106,
+        "of": 1030
+      }
+    }
+  },
+  "prod_current": {
+    "role": "",
+    "status": "unverifiable",
+    "identical_pairs": {
+      "identical": {
+        "n": 2,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "n": 0,
+          "of": 5
+        },
+        "same_cost_centre": {
+          "n": 0,
+          "of": 5
+        },
+        "same_currency": {
+          "n": 0,
+          "of": 5
+        },
+        "amount_within_approval": {
+          "n": 0,
+          "of": 5
+        },
+        "approved_before_payment": {
+          "n": 1,
+          "of": 5
+        },
+        "approval_not_expired": {
+          "n": 1,
+          "of": 5
+        },
+        "approval_not_withdrawn": {
+          "n": 0,
+          "of": 5
+        },
+        "approver_is_manager": {
+          "n": 0,
+          "of": 5
+        },
+        "four_eyes": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_checked": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_allowlisted": {
+          "n": 0,
+          "of": 5
+        },
+        "invoice_document_attached": {
+          "n": 0,
+          "of": 5
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 63,
+      "runs": 65,
+      "ceiling": 0.9692,
+      "distinct_inputs": 63
+    },
+    "reviewer": {
+      "correct": {
+        "n": 48,
+        "of": 65
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 60
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 5
+      },
+      "abstentions": {
+        "n": 17,
+        "of": 65
+      },
+      "definitive_coverage": {
+        "n": 48,
+        "of": 65
+      },
+      "authorised_confirmed": {
+        "n": 3,
+        "of": 5
+      },
+      "violations_detected": {
+        "n": 45,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "correct": {
+            "n": 8,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_cost_centre": {
+          "correct": {
+            "n": 8,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_currency": {
+          "correct": {
+            "n": 8,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "amount_within_approval": {
+          "correct": {
+            "n": 8,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approved_before_payment": {
+          "correct": {
+            "n": 3,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 7,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 3,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "approval_not_expired": {
+          "correct": {
+            "n": 3,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 7,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 3,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "approval_not_withdrawn": {
+          "correct": {
+            "n": 3,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 7,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 3,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "approver_is_manager": {
+          "correct": {
+            "n": 8,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "four_eyes": {
+          "correct": {
+            "n": 8,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_checked": {
+          "correct": {
+            "n": 8,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_allowlisted": {
+          "correct": {
+            "n": 8,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "invoice_document_attached": {
+          "correct": {
+            "n": 8,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 3,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 13,
+        "of": 81
+      },
+      "summed_over_inputs": {
+        "n": 106,
+        "of": 1030
+      }
+    }
+  },
+  "prod_proposed": {
+    "role": "",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "n": 0,
+          "of": 5
+        },
+        "same_cost_centre": {
+          "n": 0,
+          "of": 5
+        },
+        "same_currency": {
+          "n": 0,
+          "of": 5
+        },
+        "amount_within_approval": {
+          "n": 0,
+          "of": 5
+        },
+        "approved_before_payment": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_expired": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_withdrawn": {
+          "n": 0,
+          "of": 5
+        },
+        "approver_is_manager": {
+          "n": 0,
+          "of": 5
+        },
+        "four_eyes": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_checked": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_allowlisted": {
+          "n": 0,
+          "of": 5
+        },
+        "invoice_document_attached": {
+          "n": 0,
+          "of": 5
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 65,
+      "runs": 65,
+      "ceiling": 1.0,
+      "distinct_inputs": 65
+    },
+    "reviewer": {
+      "correct": {
+        "n": 65,
+        "of": 65
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 60
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 5
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 65
+      },
+      "definitive_coverage": {
+        "n": 65,
+        "of": 65
+      },
+      "authorised_confirmed": {
+        "n": 5,
+        "of": 5
+      },
+      "violations_detected": {
+        "n": 60,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_cost_centre": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_currency": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "amount_within_approval": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approved_before_payment": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_expired": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_withdrawn": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approver_is_manager": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "four_eyes": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_checked": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_allowlisted": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "invoice_document_attached": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 13,
+        "of": 81
+      },
+      "summed_over_inputs": {
+        "n": 106,
+        "of": 1030
+      }
+    }
+  },
+  "amounts_banded": {
+    "role": "",
+    "status": "unverifiable",
+    "identical_pairs": {
+      "identical": {
+        "n": 2,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "n": 0,
+          "of": 5
+        },
+        "same_cost_centre": {
+          "n": 0,
+          "of": 5
+        },
+        "same_currency": {
+          "n": 0,
+          "of": 5
+        },
+        "amount_within_approval": {
+          "n": 2,
+          "of": 5
+        },
+        "approved_before_payment": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_expired": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_withdrawn": {
+          "n": 0,
+          "of": 5
+        },
+        "approver_is_manager": {
+          "n": 0,
+          "of": 5
+        },
+        "four_eyes": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_checked": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_allowlisted": {
+          "n": 0,
+          "of": 5
+        },
+        "invoice_document_attached": {
+          "n": 0,
+          "of": 5
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 63,
+      "runs": 65,
+      "ceiling": 0.9692,
+      "distinct_inputs": 63
+    },
+    "reviewer": {
+      "correct": {
+        "n": 58,
+        "of": 65
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 60
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 5
+      },
+      "abstentions": {
+        "n": 7,
+        "of": 65
+      },
+      "definitive_coverage": {
+        "n": 58,
+        "of": 65
+      },
+      "authorised_confirmed": {
+        "n": 2,
+        "of": 5
+      },
+      "violations_detected": {
+        "n": 56,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_cost_centre": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_currency": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "amount_within_approval": {
+          "correct": {
+            "n": 3,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 7,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 3,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 1,
+            "of": 5
+          }
+        },
+        "approved_before_payment": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_expired": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_withdrawn": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approver_is_manager": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "four_eyes": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_checked": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_allowlisted": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "invoice_document_attached": {
+          "correct": {
+            "n": 7,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 3,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 7,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 2,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 1,
+        "of": 81
+      },
+      "summed_over_inputs": {
+        "n": 13,
+        "of": 1030
+      }
+    }
+  },
+  "prod_proposed_amounts_ranked": {
+    "role": "",
+    "status": "verified",
+    "identical_pairs": {
+      "identical": {
+        "n": 0,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "n": 0,
+          "of": 5
+        },
+        "same_cost_centre": {
+          "n": 0,
+          "of": 5
+        },
+        "same_currency": {
+          "n": 0,
+          "of": 5
+        },
+        "amount_within_approval": {
+          "n": 0,
+          "of": 5
+        },
+        "approved_before_payment": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_expired": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_withdrawn": {
+          "n": 0,
+          "of": 5
+        },
+        "approver_is_manager": {
+          "n": 0,
+          "of": 5
+        },
+        "four_eyes": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_checked": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_allowlisted": {
+          "n": 0,
+          "of": 5
+        },
+        "invoice_document_attached": {
+          "n": 0,
+          "of": 5
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 65,
+      "runs": 65,
+      "ceiling": 1.0,
+      "distinct_inputs": 65
+    },
+    "reviewer": {
+      "correct": {
+        "n": 65,
+        "of": 65
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 60
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 5
+      },
+      "abstentions": {
+        "n": 0,
+        "of": 65
+      },
+      "definitive_coverage": {
+        "n": 65,
+        "of": 65
+      },
+      "authorised_confirmed": {
+        "n": 5,
+        "of": 5
+      },
+      "violations_detected": {
+        "n": 60,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_cost_centre": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_currency": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "amount_within_approval": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approved_before_payment": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_expired": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_withdrawn": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approver_is_manager": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "four_eyes": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_checked": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_allowlisted": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "invoice_document_attached": {
+          "correct": {
+            "n": 10,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 0,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 10,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 5,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 0,
+        "of": 81
+      },
+      "summed_over_inputs": {
+        "n": 0,
+        "of": 1030
+      }
+    }
+  },
+  "iban_last4_declared": {
+    "role": "",
+    "status": "unverifiable",
+    "identical_pairs": {
+      "identical": {
+        "n": 5,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "n": 0,
+          "of": 5
+        },
+        "same_cost_centre": {
+          "n": 0,
+          "of": 5
+        },
+        "same_currency": {
+          "n": 0,
+          "of": 5
+        },
+        "amount_within_approval": {
+          "n": 0,
+          "of": 5
+        },
+        "approved_before_payment": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_expired": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_withdrawn": {
+          "n": 0,
+          "of": 5
+        },
+        "approver_is_manager": {
+          "n": 0,
+          "of": 5
+        },
+        "four_eyes": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_checked": {
+          "n": 5,
+          "of": 5
+        },
+        "payee_allowlisted": {
+          "n": 0,
+          "of": 5
+        },
+        "invoice_document_attached": {
+          "n": 0,
+          "of": 5
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 60,
+      "runs": 65,
+      "ceiling": 0.9231,
+      "distinct_inputs": 60
+    },
+    "reviewer": {
+      "correct": {
+        "n": 55,
+        "of": 65
+      },
+      "missed_violations": {
+        "n": 0,
+        "of": 60
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 5
+      },
+      "abstentions": {
+        "n": 10,
+        "of": 65
+      },
+      "definitive_coverage": {
+        "n": 55,
+        "of": 65
+      },
+      "authorised_confirmed": {
+        "n": 0,
+        "of": 5
+      },
+      "violations_detected": {
+        "n": 55,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_cost_centre": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_currency": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "amount_within_approval": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approved_before_payment": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_expired": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approval_not_withdrawn": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approver_is_manager": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "four_eyes": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_checked": {
+          "correct": {
+            "n": 0,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 10,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 0,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "payee_allowlisted": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "invoice_document_attached": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 0,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 13,
+        "of": 81
+      },
+      "summed_over_inputs": {
+        "n": 106,
+        "of": 1030
+      }
+    }
+  },
+  "ap_redactor": {
+    "role": "",
+    "status": "unsafe",
+    "identical_pairs": {
+      "identical": {
+        "n": 6,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "n": 0,
+          "of": 5
+        },
+        "same_cost_centre": {
+          "n": 0,
+          "of": 5
+        },
+        "same_currency": {
+          "n": 0,
+          "of": 5
+        },
+        "amount_within_approval": {
+          "n": 0,
+          "of": 5
+        },
+        "approved_before_payment": {
+          "n": 1,
+          "of": 5
+        },
+        "approval_not_expired": {
+          "n": 0,
+          "of": 5
+        },
+        "approval_not_withdrawn": {
+          "n": 0,
+          "of": 5
+        },
+        "approver_is_manager": {
+          "n": 0,
+          "of": 5
+        },
+        "four_eyes": {
+          "n": 0,
+          "of": 5
+        },
+        "payee_checked": {
+          "n": 5,
+          "of": 5
+        },
+        "payee_allowlisted": {
+          "n": 0,
+          "of": 5
+        },
+        "invoice_document_attached": {
+          "n": 0,
+          "of": 5
+        }
+      }
+    },
+    "ceiling": {
+      "majority_sum": 60,
+      "runs": 65,
+      "ceiling": 0.9231,
+      "distinct_inputs": 59
+    },
+    "reviewer": {
+      "correct": {
+        "n": 45,
+        "of": 65
+      },
+      "missed_violations": {
+        "n": 4,
+        "of": 60
+      },
+      "false_alarms": {
+        "n": 0,
+        "of": 5
+      },
+      "abstentions": {
+        "n": 16,
+        "of": 65
+      },
+      "definitive_coverage": {
+        "n": 49,
+        "of": 65
+      },
+      "authorised_confirmed": {
+        "n": 4,
+        "of": 5
+      },
+      "violations_detected": {
+        "n": 41,
+        "of": 60
+      },
+      "by_family": {
+        "same_invoice": {
+          "correct": {
+            "n": 9,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 1,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 9,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_cost_centre": {
+          "correct": {
+            "n": 9,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 1,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 9,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "same_currency": {
+          "correct": {
+            "n": 9,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 1,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 9,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "amount_within_approval": {
+          "correct": {
+            "n": 9,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 1,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 9,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "approved_before_payment": {
+          "correct": {
+            "n": 5,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 5,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 5,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 1,
+            "of": 5
+          }
+        },
+        "approval_not_expired": {
+          "correct": {
+            "n": 4,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 6,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "approval_not_withdrawn": {
+          "correct": {
+            "n": 4,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 6,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 4,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "approver_is_manager": {
+          "correct": {
+            "n": 9,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 1,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 9,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "four_eyes": {
+          "correct": {
+            "n": 9,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 1,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 9,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "payee_checked": {
+          "correct": {
+            "n": 4,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 4,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 2,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 8,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 0,
+            "of": 5
+          }
+        },
+        "payee_allowlisted": {
+          "correct": {
+            "n": 9,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 1,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 9,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        },
+        "invoice_document_attached": {
+          "correct": {
+            "n": 9,
+            "of": 10
+          },
+          "missed_violations": {
+            "n": 0,
+            "of": 5
+          },
+          "false_alarms": {
+            "n": 0,
+            "of": 5
+          },
+          "abstentions": {
+            "n": 1,
+            "of": 10
+          },
+          "definitive_coverage": {
+            "n": 9,
+            "of": 10
+          },
+          "authorised_confirmed": {
+            "n": 4,
+            "of": 5
+          },
+          "violations_detected": {
+            "n": 5,
+            "of": 5
+          }
+        }
+      }
+    },
+    "exposure": {
+      "distinct_values": {
+        "n": 44,
+        "of": 81
+      },
+      "summed_over_inputs": {
+        "n": 579,
+        "of": 1030
+      }
+    }
+  }
+}

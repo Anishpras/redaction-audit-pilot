@@ -16,7 +16,7 @@
 \title{What Evidence Do AI Agent Audit Logs Need After Redaction?\\[4pt]
 \large A Matched-Pair Pilot on Verifying Consent from Masked and Aliased Logs}
 \author{Anish Prashun\\ \small Independent researcher}
-\date{Independent technical report \quad Version 1.1.1 \quad November 2026}
+\date{Independent technical report \quad Version 1.2 \quad November 2026}
 
 \begin{document}
 \maketitle
@@ -27,6 +27,8 @@ Audit logs for AI agents often have to be redacted before a reviewer sees them, 
 Uniform masking made 6 of 10 pairs byte-identical: every recipient pair and every document pair. The reviewer could confirm none of the 10 authorised shares and detected only the 4 violations that rest on timing. Consistent aliases restored all 20 verdicts while exposing none of the 66 planted raw values. Removing expiry or revocation evidence left 12 of 20 decisions unresolved, including every authorised share.
 
 These outcomes follow largely from the design. The pilot's value is to make the mechanism measurable, to separate \emph{distinguishability} from \emph{verifiability}, and to show which evidence this rule needs from a redacted log: identity equality within the run, expiry, and an explicit revocation state. It does not need raw identifiers, names or contents.
+
+We then turn the comparison into a reusable, standard-library toolkit. Users describe their own rule as conditions tagged with one of five \emph{evidence needs} (equality, order, explicit state, raw value, presence), mark their private fields, supply a few authorised logs, and list the redaction schemes to compare. The toolkit generates boundary violations, reports for every condition and scheme whether verification stays possible, and reproduces the pilot's tables byte for byte. In exploratory runs, hashing identifiers with a fresh salt per event, which is the documented behaviour of a common redactor's hash operator without a fixed salt, gave a perfect ceiling and no identical pairs. Yet a reviewer unaware of the scheme flagged all 10 authorised shares as violations. Redacted logs should therefore declare how they were redacted. On a third, 12-condition payment policy, the toolkit found a design that kept every condition verifiable with no private value visible: per-run keyed pseudonyms, with times and amounts replaced by their order within the run.
 \end{abstract}
 
 \section{Introduction}
@@ -41,6 +43,14 @@ Recent work frames this as \emph{policy checkability}: whether a record contains
   \item A reproducible implementation using only the Python standard library. It includes a protocol pre-specified and hash-frozen before the main run (self-attested), reviewer isolation, 91 automated checks and mutation tests of its safeguards.
   \item Pilot results. Uniform masking makes every share whose verdict depends on identity unverifiable and leaves only timing violations detectable. Consistent aliases restore every verdict with zero direct exposure. Omitting a single temporal field prevents confirming any authorised share.
   \item Two properties of the ceiling metric. Merging identical-input groups can never raise it. For views in which every unauthorised run that shows no failing condition is byte-identical to its authorised partner, as holds for all five views tested here, it equals the number of authorised runs plus the number of unauthorised runs whose own input shows a failing condition, so collisions between pairs leave it unchanged.
+  \item A reusable toolkit and vocabulary (\S\ref{sec:method}):
+  \begin{itemize}
+    \item five evidence needs;
+    \item per-field redaction declarations;
+    \item generated boundary violations;
+    \item a condition-by-scheme matrix with verified, unverifiable and unsafe statuses.
+  \end{itemize}
+  It also includes two further worked policies, a support agent on trace-shaped logs and a payment agent with 12 conditions, and exploratory results for common redaction choices.
 \end{enumerate}
 
 \section{Related work}
@@ -272,6 +282,159 @@ The ablation's ceiling is 0.90, yet the faithful reviewer resolves only 8/20. Th
 
 \paragraph{Explicit absence versus missing evidence (P10 without revocation).} The authorised run records \code{not\_revoked}, and the unauthorised run records a revocation at 60, before the share at 70. Once the revocation object is removed, the two runs are indistinguishable. A log that expresses ``no revocation'' only by leaving out a field cannot be told apart from one whose revocation evidence was redacted.
 
+\section{From pilot to a reusable method}
+\label{sec:method}
+
+The pilot hard-codes one rule, one log schema and five views, so no other team could run it on its own system. We therefore rebuilt the comparison as a small toolkit, \code{redaction\_audit}. It is standard-library Python, takes four input files and runs as one command. Three ideas carry over from the pilot.
+
+\paragraph{Evidence needs.} Every condition of an authorisation rule depends on one kind of evidence (Table~\ref{tab:needs}). A redaction scheme supports auditing a rule when, for every condition, it keeps the evidence that condition needs, or declares that it removed it. Users write their rule as a list of conditions, each with a need type and the fields it relates. The toolkit derives the reviewer, the generated violations and a checklist of evidence requirements from that list.
+
+\begin{table}[h]
+\centering\small
+\caption{Evidence needs. ``Kept by'' and ``Lost by'' summarise the toolkit's built-in reviewer semantics.}
+\label{tab:needs}
+\begin{tabular}{@{}p{2.1cm}p{4.1cm}p{4.1cm}p{3.6cm}@{}}
+\toprule
+Need & Question & Kept by & Lost by \\
+\midrule
+equality & Same person or document in two events? & raw values; aliases or keyed pseudonyms consistent over the run (or globally) & uniform masks; per-event pseudonyms; dropping \\
+order & Did A happen before B? & exact times; within-run ranks & dropping; masking; coarsening at the boundary \\
+explicit state & Was the authority revoked, closed or suspended at the time? & the state recorded explicitly, with its effective time & omission standing for the ``clear'' state \\
+raw value & Is a value in an allowed set? & the value, or a non-identifying category & masking; pseudonymising \\
+presence & Does a required record exist? & the field, even with a masked value & undeclared dropping \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Declared redaction and two readings.} Every built-in transform records what it did to each field in a \code{redaction} header that travels with the log. The header names the method: mask, alias, pseudonym with its scope, bucket with its size, rank, or drop. Custom redactors can supply the same declarations. The built-in reviewer reads the log in one of two ways:
+\begin{itemize}
+  \item the \emph{declared} reading uses the header, for example by treating a bucketed time as an interval;
+  \item the \emph{undeclared} reading compares values literally, as a person or model unaware of the scheme would.
+\end{itemize}
+Each condition and scheme then receives one of four statuses:
+\begin{itemize}
+  \item \emph{verified}: every case decided correctly;
+  \item \emph{unverifiable}: some cases left undecided;
+  \item \emph{unsafe}: at least one wrong verdict;
+  \item \emph{untested}: no case violates the condition.
+\end{itemize}
+
+\paragraph{Generated matched pairs.} Users supply only authorised logs. For each log and condition, the toolkit applies a mutation that breaks exactly that condition, by default at the boundary: expiry set equal to the action time, revocation effective exactly at the action, the grant opened one tick after the action. It then checks that the mutated log fails that condition and no other, and rejects the mutation otherwise. Users can override a mutation with realistic decoy values. This removes the main cost of reuse, which is hand-writing matched pairs, and supplies boundary cases automatically.
+
+\paragraph{Expressiveness and safeguards.} Several further features cover common rule shapes and catch common input mistakes:
+\begin{itemize}
+  \item \textbf{Four-eyes rules.} An equality condition can require two values to \emph{differ}.
+  \item \textbf{Numbers.} Order conditions compare any numbers, such as times or amounts.
+  \item \textbf{Custom categories.} Users can mark their own categories of private field, for example amounts.
+  \item \textbf{Partial masking.} A built-in op keeps the last characters of a value, as card and IBAN masking do; different kept endings prove a mismatch, equal ones prove nothing.
+  \item \textbf{Realistic default violations.} Identifiers are changed in their first character, so the ending is kept and redaction that keeps the last characters is exposed. Several violations per condition, per-case decoys, and a mix of hand-written and generated pairs are supported.
+  \item \textbf{Strict input checks.} Unknown keys, field selectors that match nothing and roles that match zero or several events stop the run with a precise message.
+  \item \textbf{Both readings by default.} The built-in reviewer reports the declared and the literal reading side by side, names the cases behind every problem, and breaks down exposure by field.
+  \item \textbf{CI gates.} A gate can fail on wrong verdicts, on undecided cases, on wrong verdicts once the header is lost, or on any visible private value.
+\end{itemize}
+
+\paragraph{Regression check.} Given the pilot's 20 cases and the five views as data files, the toolkit reproduces the pilot's summary and family tables byte for byte. That shows the generalisation did not change the measurements. The toolkit has 29 tests of its own and runs in continuous integration with the pilot.
+
+\subsection*{Exploratory results: common redaction choices}
+
+These results were not pre-specified. They use the pilot's 20 cases, with six further views built on view~C's text masking (Table~\ref{tab:explore}).
+
+\begin{table}[h]
+\centering\small
+\caption{Common redaction choices on the pilot cases (20 runs). The declared reviewer reads the redaction header; the undeclared reviewer compares values literally. Status is the worst status over the six conditions.}
+\label{tab:explore}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+& & & \multicolumn{2}{c}{Declared reviewer} & \multicolumn{3}{c}{Undeclared reviewer} \\
+\cmidrule(lr){4-5}\cmidrule(lr){6-8}
+View & \shortstack{Identical\\pairs} & Ceiling & Correct & Status & Correct & \shortstack{Wrong\\verdicts} & Status \\
+\midrule
+B uniform mask (type labels) & 6/10 & 14/20 & 4/20 & unverifiable & 14/20 & 6 missed & \textbf{unsafe} \\
+D hash, salt per event & 0/10 & 20/20 & 4/20 & unverifiable & 10/20 & 10 false alarms & \textbf{unsafe} \\
+E keyed hash per run & 0/10 & 20/20 & 20/20 & verified & 20/20 & 0 & verified \\
+F keyed hash, global & 0/10 & 20/20 & 20/20 & verified & 20/20 & 0 & verified \\
+G times bucketed to 10 & 2/10 & 18/20 & 14/20 & unverifiable & 18/20 & 2 false alarms & \textbf{unsafe} \\
+H times as within-run ranks & 0/10 & 20/20 & 20/20 & verified & 20/20 & 0 & verified \\
+I purpose masked & 0/10 & 20/20 & 10/20 & unverifiable & 20/20 & 0 & (untested) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Four observations follow.
+\begin{enumerate}
+  \item \textbf{Per-event pseudonyms look perfect on the distinguishability metrics but break verification.} No pair is identical and the ceiling is 20/20. Yet the declared reviewer can verify only the timing violations, and the undeclared reviewer flags every authorised share. This is the behaviour of a widely used redactor's hash operator, whose documentation states that the same value gets different hashes across entities and calls unless a salt is provided~\cite{presidio}. Its default \emph{replace} operator, which substitutes the entity type, corresponds to view~B. Identical pairs and the ceiling are therefore not safety indicators. The status, which counts wrong verdicts, is.
+  \item \textbf{This rule needs the order of times, not their values.} Within-run ranks keep every verdict.
+  \item \textbf{Coarsening times, a natural defence against timestamp linkage, misleads a literal reader.} It does so exactly at the boundary pairs (P07, P09). A declared interval reading abstains there instead.
+  \item \textbf{A literal reader passes every masked purpose.} No pilot case violates purpose, so this error cannot surface (\emph{untested}). That is why generated pairs cover every condition.
+\end{enumerate}
+
+\subsection*{A second policy and log shape}
+
+The toolkit's starter audit uses a different rule and a different log shape: a support agent reading a customer record, in OpenTelemetry-style spans with an unrelated LLM span in each run. The rule exercises all five needs:
+\begin{itemize}
+  \item agent and customer match the ticket assignment (equality);
+  \item the read happens after the assignment opens and before its scheduled close (order);
+  \item the ticket was not closed at or before the read (explicit state);
+  \item the agent's role is allowed (raw value).
+\end{itemize}
+From 6 authorised logs it generates 36 boundary violations.
+
+Results under the declared reviewer:
+\begin{itemize}
+  \item Per-run aliases, per-run keyed hashes and time ranks verify every condition.
+  \item Type labels and per-event hashes lose the identity conditions.
+  \item Minute buckets lose every order and state condition at the boundary.
+  \item Dropping the ticket's status loses the explicit-state condition.
+  \item Masking the role loses the raw-value condition.
+  \item An example custom redactor replaces customer identifiers with \code{<CUSTOMER>} without declaring it. It is \emph{unsafe}, approving all 6 misdirected reads. Because it forgets agent and ticket identifiers, the exposure scan also shows 12 of 38 planted values still visible.
+\end{itemize}
+
+\subsection*{A third example: a payment agent}
+
+A payment agent executes supplier payments from logs with three event types: approval, vendor-master check and payment. The rule has 12 conditions and uses all five needs:
+\begin{itemize}
+  \item same invoice, same cost centre and same currency as the approval;
+  \item an amount within the approved amount;
+  \item approval before payment and before its expiry;
+  \item no withdrawal by the time of payment;
+  \item a manager as approver;
+  \item four-eyes (approver differs from requester);
+  \item a payee IBAN that matches the vendor check, and a payee on the allowlist;
+  \item an attached invoice document.
+\end{itemize}
+From 5 authorised logs, one of which contains a failed attempt and a retry, the toolkit generates 60 boundary violations. Results by view:
+\begin{itemize}
+  \item \textbf{The log vendor's default type masking} loses the invoice, amount, four-eyes and payee checks.
+  \item \textbf{An hourly time bucket in the current export} leaves the time conditions undecidable near their limits.
+  \item \textbf{An in-house regex redactor} keeps IBAN endings without declaring it. It is \emph{unsafe}, passing 4 payments to lookalike IBANs, and leaves 44 of 81 private values visible.
+  \item \textbf{Per-run keyed pseudonyms, with masked text and with times and amounts replaced by their within-run ranks,} verify all 12 conditions under both readings, with 0 of 81 private values visible.
+\end{itemize}
+The policy, cases and redactor were written during the usability test described below.
+
+\subsection*{A usability test}
+
+An AI agent acting as a first-time user followed the tutorial and audited a payment policy of its own design. It completed the audit and the CI gate, but estimated 2.5--4 hours for a person's first attempt, not the hour the draft tutorial suggested. It also found several problems:
+\begin{itemize}
+  \item ignored keys that could invert a rule;
+  \item field selectors that matched nothing yet showed ``verified'';
+  \item integer-only comparisons, with a misleading error message;
+  \item generated violations that a keep-the-last-four redactor could not miss;
+  \item outputs that did not name the failing cases.
+\end{itemize}
+All of these are fixed in v1.2, each with a regression test. No outside team has used the toolkit yet.
+
+\subsection*{Fit with existing formats}
+
+Three widely used formats leave out evidence that these needs require.
+\begin{itemize}
+  \item \textbf{OpenTelemetry.} The GenAI semantic conventions, which are still marked as in development, make a tool call's arguments and result opt-in, flag them as potentially sensitive, and define no attribute for an authorisation decision~\cite{otelgenai}. Unless the evidence fields are promoted to dedicated attributes, a trace may not record the recipient and document at all.
+  \item \textbf{OCSF.} OCSF~1.9.0's \code{delegation} object, ``a durable authorization context that a principal issues to a delegate'', has only an identifier, a creation time, an issuer and a parent~\cite{ocsfdelegation}. An event that carries only this object is in the position of our ablated views: expiry and revocation must come from elsewhere.
+  \item \textbf{ISO/IEC TS 27560 (through W3C DPV).} The community guide for 27560 consent records models withdrawal as a change of consent state~\cite{dpv27560}. That supports recording the state in force at the time of the action explicitly, as the explicit-state need asks.
+\end{itemize}
+The repository maps these formats to the toolkit's files.
+
 \section{Discussion}
 
 \paragraph{What the reviewer needs.} The pilot shows by removal that verifying this rule needs three things in the log:
@@ -284,7 +447,7 @@ Purpose and grant time are needed by the rule's definition; they were never remo
 
 \paragraph{How uniform masking fails.} Uniform masking fails because it erases equality, not because it hides values. Its failure is also asymmetric: timing violations remain detectable, but no authorised share can ever be confirmed. The naive diagnostic shows the opposite hazard: a reviewer that reads equal masks as equal identities clears every misdirected share that shows no other failure.
 
-\paragraph{Scope of consistency.} Our within-run aliases make the consistently pseudonymised set one run: the smallest set that still lets a reviewer compare the grant with the share. That is in the spirit of the EDPB's recommendation to keep such sets ``as small as possible''~\cite{edpb2025pseudo}. The same guidance prefers per-transaction pseudonyms. If the grant and the share count as separate transactions, those would give the same party different pseudonyms in the two events. By the reasoning above, that would remove the equality the check needs, and a reviewer comparing them as identifiers would see a mismatch on every share. We did not test this.
+\paragraph{Scope of consistency.} Our within-run aliases make the consistently pseudonymised set one run: the smallest set that still lets a reviewer compare the grant with the share. That is in the spirit of the EDPB's recommendation to keep such sets ``as small as possible''~\cite{edpb2025pseudo}. The same guidance prefers per-transaction pseudonyms. If the grant and the share count as separate transactions, those would give the same party different pseudonyms in the two events. In the exploratory runs (\S\ref{sec:method}), pseudonyms salted per event indeed made the identity conditions unverifiable under a declared reading. Under a literal reading they turned every authorised share into a false alarm.
 
 \paragraph{Scope of the exposure result.} Zero direct exposure for B and C holds by construction, and the scanner counts only literal planted strings. It is therefore a lower bound: format-preserving substitutes, for example, can leak information about the original value~\cite{boesgaard2026fpe}. The views also keep purposes, exact timestamps, event structure and, in C, the pattern of equalities within a run. Someone holding other records with matching timestamps could join on them and recover identities, as attacks that exploit unchanged trace fields illustrate~\cite{mohammady2018multiview,coull2007devil}. Purposes such as ``fraud review'' can themselves be sensitive. Resetting aliases for every run blocks linking across runs, but it also makes cross-run questions unanswerable, such as whether one recipient received many documents. We did not measure this trade-off.
 
@@ -297,8 +460,10 @@ Purpose and grant time are needed by the rule's definition; they were never remo
   \item \textbf{Reviewer.} The reviewer is rule-based. Its isolation is process-level rather than an operating-system sandbox.
   \item \textbf{Exposure.} The scanner counts exact substrings only; it does not detect fragments, transformed values or inference.
   \item \textbf{Shortcuts a model could exploit.} Before any model study, two shortcuts must be removed. In view C, the token \code{\_ALIAS\_2} alone marks every identity violation. In view A, the document-family violations carry a message that does not fit the file sent.
-  \item \textbf{Pre-registration.} The v1.0 freeze did not cover the code (see Validation).
+  \item \textbf{Pre-specification.} The freeze is self-attested, and the v1.0 freeze did not cover the code (see Validation).
   \item \textbf{Agent framing.} Nothing in the method is specific to AI agents: there is no model, no free-text tool argument and no multi-step trajectory. We use an agent's action log because that is where the motivating problem arises.
+  \item \textbf{Exploratory results.} The results in \S\ref{sec:method} were not pre-specified.
+  \item \textbf{Toolkit scope.} The toolkit evaluates one authority event and one action per run, a conjunction of conditions, and literal exposure only. Its second example is synthetic. Its usability has been tested only by an AI agent acting as a first-time user, which estimated 2.5--4 hours for a person's first audit. It has not yet been used by outside teams.
   \item \textbf{Literature search.} The search was not exhaustive.
 \end{itemize}
 
@@ -307,7 +472,8 @@ Purpose and grant time are needed by the rule's definition; they were never remo
 The following ideas are untested.
 \begin{itemize}
   \item \textbf{A local-model reviewer.} It would use the same views, a frozen prompt and schema, development and test templates kept separate, and repeated runs analysed as repeated measures. Logs should contain several events, so that alias numbering is not a giveaway. In forensic reconstruction of agent logs, ``identifier renaming alone provided no consistent remedy'' and explicit record bindings helped~\cite{yun2026evidence}, which suggests that model reviewers may use aliases less reliably than our rule does.
-  \item \textbf{More families and log shapes.} Purpose and grant-start families; logs with several grants and shares; delegated or partial grants.
+  \item \textbf{More families and log shapes.} Purpose and grant-start families in the pilot; runs with several authorities and actions; delegated or partial grants; identifiers embedded in free-text tool arguments.
+  \item \textbf{A linkage measure.} Measuring how pseudonym scope (event, run, global) and retained timestamps allow records to be joined across runs, to complement the verification measure.
   \item \textbf{Persistent pseudonyms.} A per-transaction or keyed-persistent pseudonym view that measures cross-run audit utility against linkage risk, together with a re-identification test that joins retained timestamps to auxiliary records.
   \item \textbf{Richer exposure measures,} based on fragments and inference.
   \item \textbf{Grounded labels.} Labels based on published consent-record structures~\cite{iso27560} or on contextual-integrity norms~\cite{guo2026agentciscope}.
@@ -315,7 +481,7 @@ The following ideas are untested.
 
 \section*{Availability and reproducibility}
 
-The code, fixtures, manifest, protocol with revision log, freeze history and all outputs are at \url{https://github.com/Anishpras/redaction-audit-pilot}, with a Zenodo archive and DOI listed in the repository README once released. Running \code{python3 run\_pilot.py} reproduces every number in this paper.
+The code, fixtures, manifest, protocol with revision log, freeze history and all outputs are at \url{https://github.com/Anishpras/redaction-audit-pilot}, with a Zenodo archive and DOI listed in the repository README once released. Running \code{python3 run\_pilot.py} reproduces every number in the pilot. Running \code{python3 -m redaction\_audit} reproduces the exploratory results and runs the toolkit on new rules (see \code{docs/tutorial.md}).
 \begin{itemize}
   \item \textbf{Environment:} Python 3.13.7 on macOS (arm64), about 7 seconds, 290 isolated reviewer calls across two passes.
   \item \textbf{Versions and seeds:} fixture version 1.1.0; sanity seed 20261112; call-order seeds 20261113 and 20261114.
@@ -347,6 +513,10 @@ The experiment code, analysis and manuscript were prepared with substantial assi
 \bibitem{enisa2019pseudo} ENISA. Pseudonymisation techniques and best practices: Recommendations on shaping technology according to data protection and privacy provisions. European Union Agency for Cybersecurity, Nov.\ 2019. \url{https://doi.org/10.2824/247711}
 \bibitem{edpb2025pseudo} European Data Protection Board. Guidelines 01/2025 on pseudonymisation. Adopted 16 Jan.\ 2025, version for public consultation, paras.~115--121. \url{https://www.edpb.europa.eu/system/files/2025-01/edpb_guidelines_202501_pseudonymisation_en.pdf}
 \bibitem{iso27560} ISO/IEC. ISO/IEC TS 27560:2023 Privacy technologies --- Consent record information structure. Edition 1, Aug.\ 2023. \url{https://www.iso.org/standard/80392.html}
+\bibitem{presidio} Presidio project. Presidio Anonymizer documentation (operators \emph{replace} and \emph{hash}). Accessed 12 Nov.\ 2026. \url{https://presidio.dataprivacystack.org/anonymizer/}
+\bibitem{otelgenai} OpenTelemetry. Semantic conventions for generative AI: execute tool span (status: Development). Accessed 12 Nov.\ 2026. \url{https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/execute-tool.md}
+\bibitem{ocsfdelegation} OCSF. Open Cybersecurity Schema Framework 1.9.0, \emph{delegation} object. Accessed 12 Nov.\ 2026. \url{https://schema.ocsf.io/objects/delegation}
+\bibitem{dpv27560} W3C Data Privacy Vocabularies and Controls Community Group. Consent records and receipts as per ISO/IEC TS 27560:2023 using DPV. Final Community Group Report, 15 Feb.\ 2026. \url{https://w3c-cg.github.io/dpv/guides/consent-27560}
 \end{thebibliography}
 
 \end{document}
