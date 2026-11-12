@@ -3,7 +3,7 @@
 **What Evidence Do AI Agent Audit Logs Need After Redaction?** This is a small, reproducible pilot. It asks whether a reviewer can still verify consent for an AI agent's completed document share after the audit log has been redacted. It compares three log formats: full logs, uniform masking and consistent within-run aliases.
 
 - **Paper:** [`paper/main.pdf`](paper/main.pdf) (LaTeX source: `paper/main.tex`)
-- **Protocol:** [`PROTOCOL.md`](PROTOCOL.md), with pre-registered hypotheses and a revision log
+- **Protocol:** [`PROTOCOL.md`](PROTOCOL.md), with pre-specified (self-attested) hypotheses and a revision log
 
 All data is synthetic and fictional. The code is original and uses only the Python 3 standard library. It makes no network calls, uses no model and needs no paid services.
 
@@ -28,7 +28,7 @@ python3 run_pilot.py
 The command takes about 7 seconds on Python 3.13.7, and the exit code is 0 only if all 91 checks pass. It:
 
 1. checks that `data/` matches `pilot/fixtures.py`, and that every frozen file (protocol, data and all code) matches the latest entry in `FREEZE.json`;
-2. runs the pre-run checks: labels against an independent policy oracle, pair construction, boundary cases, planted values, a static allowlist on the reviewer, canonical serialisation, the exposure scanner and 30 unit tests;
+2. runs the pre-run checks: labels against a separately implemented policy oracle, pair construction, boundary cases, planted values, a static allowlist on the reviewer, canonical serialisation, the exposure scanner and 30 unit tests;
 3. renders five views of the 20 runs and 5 sanity cases, and passes each exact byte string to `pilot/reviewer.py`. Each call gets a fresh empty temporary directory holding only a copy of the reviewer, runs under `python3 -I` with an empty environment, receives its input on stdin only, and the calls run in a seeded shuffled order;
 4. repeats the whole pass in a different order and checks that every input and verdict reproduces;
 5. stops if the full-view reviewer disagrees with any label. Otherwise it scores metrics 1–4, checks the metric invariants and runs a supplementary shared-timeline analysis;

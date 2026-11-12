@@ -7,7 +7,7 @@
   {
     "check": "freeze_hashes_match_current_files",
     "ok": true,
-    "detail": "label=v1.1 mismatched=[] not_covered=[]"
+    "detail": "label=v1.1.1 mismatched=[] not_covered=[]"
   },
   {
     "check": "label_matches_policy:case-e44e723a",

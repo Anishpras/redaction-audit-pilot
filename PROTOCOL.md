@@ -8,7 +8,7 @@ Pilot protocol. Version 1.0 was written and frozen (`FREEZE.json`, entry v1.0) b
 
 **Unit of study.** One completed `share_document` action in a fictional CRM. Its effect is recorded by a mock executor, including deliberately unauthorised shares, and audited afterwards. This measures what the *log* lets a reviewer determine. It does not test a language model.
 
-| | Hypothesis | Pre-registered prediction on this fixture set |
+| | Hypothesis | Pre-specified prediction on this fixture set (self-attested) |
 |---|---|---|
 | H1 | Uniform masking makes some authorised/unauthorised pairs identical when the verdict depends on which document or recipient matches the grant. | View B: 6/10 pairs identical (4/4 recipient, 2/2 document, 0/2 expiry, 0/2 revocation). Ceiling 14/20 = 0.70. Reviewer: 4/20 correct (the four timing violations), 16/20 insufficient evidence, 0 missed violations, 0 false alarms, 0/10 authorised shares confirmed. |
 | H2 | Consistent within-run aliases restore those relationships while removing direct exposure of planted values. | View C: 0/10 pairs identical, ceiling 1.00, reviewer 20/20 correct. Planted values visible: A 100%, B 0%, C 0%. |
@@ -96,7 +96,7 @@ Any known fail gives **unauthorised**. All six passing gives **authorised**. Oth
 - **[v1.1]** Metric invariants hold in every view:
   - the reviewer's correct count does not exceed the ceiling's majority sum, which no stateless reviewer can beat;
   - the outcome counts partition the 20 runs;
-  - in this matched-pair design, the ceiling's majority sum equals the authorised runs plus the violations detected.
+  - for these five views, in which every unauthorised run that shows no failing condition is byte-identical to its authorised partner, the ceiling's majority sum equals the authorised runs plus the violations detected. This identity is not general: a view that adds per-event randomness can break it.
 - The sanity cases behave as specified in section 3.
 - Every mixed-label identical-input group, and at least one pair from each family, is inspected by hand and reported.
 
@@ -122,7 +122,16 @@ The independent reviewer recomputed every metric with its own code and confirmed
 6. **New checks.** Boundary checks are now tied to their intended pairs (P07, P09, P04, P03). The metric invariants of §7 were added. The full-view gate now stops the run instead of only printing a message.
 7. **Corrected statements.**
    - "different pairs use different purposes and times" (see §3);
-   - the paper's claim that shared timelines would lower B's ceiling. In this matched-pair design, every ceiling equals (authorised runs + unauthorised runs whose own input shows a failing condition) / 20, whatever collides.
-8. **Supplementary analysis, not pre-registered.** A shared-timeline variant moves every pair onto P01's purpose and timeline. Inputs collide across pairs, but every ceiling and every reviewer count stays the same as in the main fixtures.
+   - the paper's claim that shared timelines would lower B's ceiling. For these five views, every ceiling equals (authorised runs + unauthorised runs whose own input shows a failing condition) / 20, whatever collides.
+8. **Supplementary analysis, not pre-specified.** A shared-timeline variant moves every pair onto P01's purpose and timeline. Inputs collide across pairs, but every ceiling and every reviewer count stays the same as in the main fixtures.
 
 Mutation tests confirm the new safeguards. Each of five deliberate faults is caught: an edited fixture, an alias table that persists across runs, a reviewer that always passes purpose, scoring that counts abstentions as misses, and a reviewer that reaches the filesystem through `json.codecs`.
+
+
+### v1.1.1 (2026-11-12, wording only; prompted by a second independent review)
+
+No code, data or results changed.
+
+- **Property (ii) of the ceiling, scoped.** It is now stated as holding for views in which every unauthorised run that shows no failing condition is byte-identical to its partner, as all five views here are. It is not a general property of matched-pair designs: a per-event random mask breaks it.
+- **"Pre-registered" replaced by "pre-specified (self-attested)".** `FREEZE.json` is written by the author, and the v1.0 hashes refer to files with the original case identifiers, which are not in the release.
+- **"Every definitive answer was correct", scoped to the five views tested.**

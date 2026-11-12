@@ -16,7 +16,7 @@
 \title{What Evidence Do AI Agent Audit Logs Need After Redaction?\\[4pt]
 \large A Matched-Pair Pilot on Verifying Consent from Masked and Aliased Logs}
 \author{Anish Prashun\\ \small Independent researcher}
-\date{Independent technical report \quad Version 1.1 \quad November 2026}
+\date{Independent technical report \quad Version 1.1.1 \quad November 2026}
 
 \begin{document}
 \maketitle
@@ -38,9 +38,9 @@ Recent work frames this as \emph{policy checkability}: whether a record contains
 \paragraph{Contributions.}
 \begin{enumerate}
   \item A matched-pair design and metric suite that separates three questions: whether inputs can be told apart (identical-input pairs and a forced-binary ceiling), whether consent can be verified (a three-valued reviewer) and what is directly exposed (planted values).
-  \item A reproducible implementation using only the Python standard library. It includes a protocol hash-frozen before the main run, reviewer isolation, 91 automated checks and mutation tests of its safeguards.
+  \item A reproducible implementation using only the Python standard library. It includes a protocol pre-specified and hash-frozen before the main run (self-attested), reviewer isolation, 91 automated checks and mutation tests of its safeguards.
   \item Pilot results. Uniform masking makes every share whose verdict depends on identity unverifiable and leaves only timing violations detectable. Consistent aliases restore every verdict with zero direct exposure. Omitting a single temporal field prevents confirming any authorised share.
-  \item Two properties of the ceiling metric. Merging identical-input groups can never raise it. In matched-pair designs like this one, it equals the number of authorised runs plus the number of unauthorised runs whose own input shows a failing condition, so collisions between pairs leave it unchanged.
+  \item Two properties of the ceiling metric. Merging identical-input groups can never raise it. For views in which every unauthorised run that shows no failing condition is byte-identical to its authorised partner, as holds for all five views tested here, it equals the number of authorised runs plus the number of unauthorised runs whose own input shows a failing condition, so collisions between pairs leave it unchanged.
 \end{enumerate}
 
 \section{Related work}
@@ -170,12 +170,12 @@ Let $N=20$ be the number of runs.
 \paragraph{Three properties of the ceiling.}
 \begin{enumerate}[label=(\roman*)]
   \item \textbf{Merging never raises it,} since $\max(a+a',u+u') \le \max(a,u)+\max(a',u')$.
-  \item \textbf{In this matched-pair design, it equals $(n_{\text{auth}} + d)/N$,} where $d$ counts unauthorised runs whose own input shows a failing condition.
+  \item \textbf{For views in which every unauthorised run that shows no failing condition is byte-identical to its authorised partner} (true of all five views here), \textbf{it equals $(n_{\text{auth}} + d)/N$,} where $d$ counts unauthorised runs whose own input shows a failing condition.
   \begin{itemize}
     \item If an unauthorised run shows a failure, every byte-identical run shows it too, so its group is entirely unauthorised.
-    \item Otherwise its input equals its authorised partner's, so its group has at least as many authorised runs as unauthorised ones.
+    \item Otherwise, by the condition, its input equals its authorised partner's, so its group has at least as many authorised runs as unauthorised ones.
   \end{itemize}
-  Collisions between pairs therefore leave the ceiling unchanged. Because $d$ is exactly the number of violations the faithful reviewer detects, the run checks this identity in every view.
+  Collisions between pairs therefore leave the ceiling unchanged. Because $d$ is exactly the number of violations the faithful reviewer detects, the run checks this identity in every view. The condition is not automatic: a mask that carries a per-event random value makes every input distinct, so the ceiling reaches 20/20 while the reviewer still detects only the four timing violations.
   \item \textbf{On a collapsed matched pair,} any forced binary rule gets exactly one of the two runs wrong, either as a missed violation or as a false alarm.
 \end{enumerate}
 
@@ -209,7 +209,7 @@ Two checks are weak and are kept only as smoke tests: same-process re-rendering,
 
 \paragraph{Independent review.} A separate AI agent that had not written the code reviewed version 1.0. It recomputed every metric and reproduced all 100 recorded verdicts with its own code. It confirmed byte-identical results under Python 3.12--3.14 and different hash seeds. It also found gaps in enforcement and wording, which version 1.1 fixes; \code{PROTOCOL.md} lists every change.
 
-\paragraph{Pre-registration.} The v1.0 freeze, made before the main run, hashed the protocol, fixtures and manifest but not the code. File timestamps are consistent with no code changes after it, but the release cannot prove this. The v1.1 freeze covers all code.
+\paragraph{Pre-registration.} The v1.0 freeze, made before the main run, hashed the protocol, fixtures and manifest but not the code. File timestamps are consistent with no code changes after it, but the release cannot prove this. The v1.1 freeze covers all code. The freeze is self-attested: \code{FREEZE.json} is written by the author, and the v1.0 hashes refer to files with the original case identifiers, which are not in the release.
 
 \paragraph{Effect of the revision.} No reported number changed between v1.0 and v1.1: the summary tables are byte-identical. Byte-identity of results across separate invocations was verified with \code{diff}, outside the automated checks.
 
@@ -235,7 +235,7 @@ C, no revocation & 2/10 & 0/0/0/2 & 0.90 & 8/20 & 0/10 & 0/10 & 12/20 & 0/10 & 0
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:results} reports every view. The faithful reviewer made no missed violations and no false alarms in any view. Every loss is an abstention, and every definitive answer was correct.
+Table~\ref{tab:results} reports every view. The faithful reviewer made no missed violations and no false alarms in any view. Every loss is an abstention, and in these five views every definitive answer was correct. That is a property of the views, which either keep a relation exactly or announce that they removed it; a transformation that silently changes values can produce confident wrong verdicts.
 
 \paragraph{By family.}
 \begin{itemize}
@@ -244,7 +244,7 @@ Table~\ref{tab:results} reports every view. The faithful reviewer made no missed
   \item \textbf{C without revocation} mirrors this, abstaining on the revocation family instead.
 \end{itemize}
 
-\paragraph{Hypotheses.} All three pre-registered predictions matched exactly.
+\paragraph{Hypotheses.} All three pre-specified predictions matched exactly.
 \begin{itemize}
   \item \textbf{H1:} masking collapses identity-dependent pairs.
   \item \textbf{H2:} aliases restore those pairs with zero direct exposure.
@@ -253,7 +253,7 @@ Table~\ref{tab:results} reports every view. The faithful reviewer made no missed
 
 \paragraph{Mixed groups and sanity cases.} The only identical-input groups with mixed labels were the predicted within-pair groups: P01--P06 under B, P07--P08 without expiry, and P09--P10 without revocation. All five sanity cases kept their verdict in every view. Masked and aliased inputs were byte-identical to the base case. The full view was identical only under the key-order change.
 
-\paragraph{Supplementary: shared timeline.} We moved every pair onto P01's purpose and timeline, keeping only its varied fact. This analysis was added after review and was not pre-registered. Distinct inputs fell to 6 (B), 8 (C), 6 (no expiry) and 5 (no revocation), but every ceiling (20, 14, 20, 18, 18 out of 20) and every reviewer count stayed the same, as property~(ii) predicts.
+\paragraph{Supplementary: shared timeline.} We moved every pair onto P01's purpose and timeline, keeping only its varied fact. This analysis was added after review, was not pre-specified, and applies the reviewer in-process rather than in isolated calls. Distinct inputs fell to 6 (B), 8 (C), 6 (no expiry) and 5 (no revocation), but every ceiling (20, 14, 20, 18, 18 out of 20) and every reviewer count stayed the same, as property~(ii) predicts.
 
 \paragraph{Supplementary: naive reviewer.} A reviewer that reads equal masks as equal identities reaches the B ceiling (14/20) with full coverage. It gets there by clearing all 6 recipient and document violations, none of which shows another failure.
 
@@ -298,6 +298,7 @@ Purpose and grant time are needed by the rule's definition; they were never remo
   \item \textbf{Exposure.} The scanner counts exact substrings only; it does not detect fragments, transformed values or inference.
   \item \textbf{Shortcuts a model could exploit.} Before any model study, two shortcuts must be removed. In view C, the token \code{\_ALIAS\_2} alone marks every identity violation. In view A, the document-family violations carry a message that does not fit the file sent.
   \item \textbf{Pre-registration.} The v1.0 freeze did not cover the code (see Validation).
+  \item \textbf{Agent framing.} Nothing in the method is specific to AI agents: there is no model, no free-text tool argument and no multi-step trajectory. We use an agent's action log because that is where the motivating problem arises.
   \item \textbf{Literature search.} The search was not exhaustive.
 \end{itemize}
 
@@ -314,7 +315,7 @@ The following ideas are untested.
 
 \section*{Availability and reproducibility}
 
-The code, fixtures, manifest, protocol with revision log, freeze history and all outputs are at \url{https://github.com/Anishpras/redaction-audit-pilot}, archived as [DOI to be added on release]. Running \code{python3 run\_pilot.py} reproduces every number in this paper.
+The code, fixtures, manifest, protocol with revision log, freeze history and all outputs are at \url{https://github.com/Anishpras/redaction-audit-pilot}, with a Zenodo archive and DOI listed in the repository README once released. Running \code{python3 run\_pilot.py} reproduces every number in this paper.
 \begin{itemize}
   \item \textbf{Environment:} Python 3.13.7 on macOS (arm64), about 7 seconds, 290 isolated reviewer calls across two passes.
   \item \textbf{Versions and seeds:} fixture version 1.1.0; sanity seed 20261112; call-order seeds 20261113 and 20261114.
