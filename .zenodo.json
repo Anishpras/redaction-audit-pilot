@@ -4,7 +4,8 @@
   "version": "1.2.1",
   "creators": [
     {
-      "name": "Prashun, Anish"
+      "name": "Prashun, Anish",
+      "orcid": "0009-0007-6360-6017"
     }
   ],
   "description": "<p>A reusable, standard-library Python toolkit (<code>python3 -m redaction_audit</code>). It tests whether redacted action logs, such as AI agent audit logs, still let a reviewer verify an authorisation policy. Users describe their rule as conditions tagged with evidence needs (equality, order, explicit state, raw value, presence), mark private fields, provide a few authorised logs, and list redaction schemes. The toolkit generates boundary violations and reports per condition whether each scheme keeps verification possible (verified / unverifiable / unsafe), plus direct exposure of private values.</p><p>Includes the reproducible pilot study (20 matched runs; full logs, uniform masking, consistent aliases, expiry and revocation ablations) and the technical report. Run <code>python3 run_pilot.py</code> to reproduce the pilot.</p><p>Code: MIT. Paper, protocol, fixtures and results: CC BY 4.0. All records are fictional.</p>",
